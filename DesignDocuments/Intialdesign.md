@@ -38,8 +38,8 @@ class Breed {
     -description: String
     -hypoallergenic: boolean
 }
-class apiUtil {
-    -apiUtil()
+class ApiUtil {
+    -ApiUtil()
     +createJsonMap(string: String, object: Breed): void
     +serialize(breed: Breed): String
     +deserialize(string: String): Breed 
