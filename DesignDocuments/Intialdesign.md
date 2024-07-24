@@ -38,18 +38,42 @@ class Breed {
     -description: String
     -hypoallergenic: boolean
 }
-class ApiUtil {
-    -ApiUtil()
+class apiUtil {
+    -apiUtil()
     +createJsonMap(string: String, object: Breed): void
     +serialize(breed: Breed): String
-    +deserialize(string: String): Breed
+    +deserialize(string: String): Breed 
 }
 class AdoptionCenterModel {
     -dogs: Collection~Dog~
-    +addDog(dog: Dog): void
+    +addDog(dog: Dog): void 
     +removeDog(dog: Dog): void
 }
+class ACController {
+-filtered: Collection~Dog~
+-filterType: String
+-filterInput: String
++ACController(model: AdoptionCenterModel)
++getFilterType(): String
++getFilterInput(): String
++getFiltered(filter: String, filterType: String): Collection~Dog~
++searchByName(name: String): Collection~Dog~
+}
+class Website
+class ACFilterPlanner {
+	-filtered: Stream~Dogs~
+	+Planner(dogs: set~Dogs~)
+	+filter(filter: String): Stream~Dogs~
+	+filter(filter: String, sortOn: String): Stream~Dogs~
+	+filter(filter: String, sortOn: String, ascending: boolean): Stream~Dogs~
+	+reset(): void
+	+filterHelper(string: String): Comparator
+}
 Dog --> Breed
-Breed --> ApiUtil
-AdoptionCenterModel --> Dog
+Breed --> apiUtil
+AdoptionCenterModel --> Dog 
+ACController --> AdoptionCenterModel
+Website --> ACController
+ACController --> ACFilterPlanner
+ACFilterPlanner --> Dog
 ```
