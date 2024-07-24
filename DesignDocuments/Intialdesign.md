@@ -42,14 +42,14 @@ class ApiUtil {
     -ApiUtil()
     +createJsonMap(string: String, object: Breed): void
     +serialize(breed: Breed): String
-    +deserialize(string: String): Breed 
+    +deserialize(string: String): Breed
 }
 class AdoptionCenterModel {
     -dogs: Collection~Dog~
-    +addDog(dog: Dog): void 
+    +addDog(dog: Dog): void
     +removeDog(dog: Dog): void
 }
 Dog --> Breed
 Breed --> ApiUtil
-AdoptionCenterModel -–> Dog 
+AdoptionCenterModel --> Dog
 ```
