@@ -45,7 +45,7 @@ class apiUtil {
     +deserialize(string: String): Breed 
 }
 class AdoptionCenterModel {
-    - dogs: Collection~Dog~
+    -dogs: Collection~Dog~
     +addDog(dog: Dog): void 
     +removeDog(dog: Dog): void
 }
