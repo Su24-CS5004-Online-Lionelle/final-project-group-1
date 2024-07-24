@@ -51,5 +51,5 @@ class AdoptionCenterModel {
 }
 Dog --> Breed
 Breed --> ApiUtil
-AdoptionCenterModel –> Dog 
+AdoptionCenterModel -–> Dog 
 ```
