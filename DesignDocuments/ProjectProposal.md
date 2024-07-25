@@ -150,26 +150,35 @@ ACFilterPlanner --> Dog
 `Model`
 
 July 27th -  API Integration done Philip and Joel
-July 28th -  Framework (Dina, Emily) Completed by Sunday July 28
+
+July 28th -  Framework (Dina, Emily) 
+
+Completed by Sunday July 28
+
 July 29th - Model status meetup.  Is the model complete?
 
 `Controller` 
 
-Completed by July 31  
+Completed by July 31
+
 July 31st - Controller status meetup, do we need to use the flexday for more time on the controller or we can move onto website
 
 `Website`
 
 Homepage 2nd-3rd 
+
 August 2nd - Homepage meetup, is the homepage done, what is the progress
 
 Dog Page details 4-5th
+
 Done by August 5th 
+
 August 6th - Finished website meetup, do we need to use the 7th to finish everything
 
 `Presentation`
 
 August 7th - Build Presentation for website 
+
 August 8th - Build Presentation for website 
 
 August 9th - Give Presentation 
