@@ -16,7 +16,7 @@ Minimum:
 3. Be able to filter items in the collection
 4. Include images for your items
 
-`Intial Ideas`:
+`Intial Structure Ideas`:
 
 `Adoption Center Main Model`
 
