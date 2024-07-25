@@ -3,11 +3,15 @@
 `Adoption Center Main Model`
 
 Dogs as objects with name, breed, age, sex as main fields. Hypoallergenic will be a boolean field that is dependent on breed.
+
 Collection will be a list of Dog objects up for adoption.
+
 https://dogapi.dog/docs/api-v2
 We will use this API to get a list of breeds and their details to assign to our dog objects
+
 It will need addDog, removeDog, changeDogAge, methods.
 Add setPrice method()
+
 Ready for adoption field, in order to be true, needs to have a price field set.
 Image field tied to dog object that is the dog’s picture/optional field.
 
