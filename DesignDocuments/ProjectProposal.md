@@ -1,3 +1,7 @@
+`What we are building`:
+
+We are building a website for a dog adoption center that will use an API that gives us a list of dog breeds which we will use to assign to our dog objects. The website will allow the user to search for dogs meeting certain criteria they want, like specific dog breed, sex, or age range. It will then have the option of allowing the user to save the list of dogs they are thinking of adopting with all the important details like price, breed, name and age.
+
 `Features`: 
 
 Initial: 
