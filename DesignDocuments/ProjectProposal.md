@@ -1,3 +1,17 @@
+`Features`: 
+
+Initial: 
+1. Graphical User Interface (Can be a website or java swing/awt)
+2. Be able to view all items in the collection - in a logical order
+3. Be able to build a list of items from the collection
+4. Be able to save out that list using a file format we covered in the course such as .xml, .json, or .csv.
+
+Minimum: 
+1. Be able to search for items in the collection
+2. Be able to sort items in the collection
+3. Be able to filter items in the collection
+4. Include images for your items
+
 `Intial Ideas`:
 
 `Adoption Center Main Model`
@@ -50,20 +64,6 @@ Home page displays all the fields that can be filtered by. Maybe have the most p
 Then have a search bar that can take arguments such as Breed: Terrier, Age: >3 that will return a list that links to the pages for all the dogs that match the criteria and those pages will have all the details of the dog, a larger picture, the age, the name, etc.
 
 Everyone will work together on all features.
-
-`Features`: 
-
-Initial: 
-1. Graphical User Interface (Can be a website or java swing/awt)
-2. Be able to view all items in the collection - in a logical order
-3. Be able to build a list of items from the collection
-4. Be able to save out that list using a file format we covered in the course such as .xml, .json, or .csv.
-
-Minimum: 
-1. Be able to search for items in the collection
-2. Be able to sort items in the collection
-3. Be able to filter items in the collection
-4. Include images for your items
 
 
 `MERMAID DIAGRAM`
