@@ -28,9 +28,8 @@ public class ApiUtil {
      */
     public String getBreeds() throws IOException, InterruptedException {
         String endpoint = API_BASE_URL + "/breeds";
-        HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create(endpoint)).GET().build();
-
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endpoint))
+        .header("accept", "application/json").GET().build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
