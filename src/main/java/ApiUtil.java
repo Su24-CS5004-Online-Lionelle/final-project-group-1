@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ApiUtil {
     /** The base URL for the Dog API (v2). */
-    private static final String API_BASE_URL = "https://dogapi.dog/v2";
+    private static final String API_BASE_URL = "https://dogapi.dog/api/v2";
 
     /** The HttpClient instance used to send HTTP requests. */
     private final HttpClient httpClient;
@@ -28,8 +28,9 @@ public class ApiUtil {
      */
     public String getBreeds() throws IOException, InterruptedException {
         String endpoint = API_BASE_URL + "/breeds";
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endpoint))
-        .header("accept", "application/json").GET().build();
+        HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create(endpoint)).GET().build();
+
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
