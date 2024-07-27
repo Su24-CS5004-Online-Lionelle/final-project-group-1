@@ -142,9 +142,9 @@ public class Dog {
     }
 
     /**
-     * Returns the readiness status of the dog.
+     * Returns the readiness for adoption status of the dog.
      *
-     * @return the readiness status of the dog
+     * @return the readiness for adoption status of the dog
      */
     public boolean getIsReady() {
         return this.isReady;
@@ -199,9 +199,9 @@ public class Dog {
     }
 
     /**
-     * Changes the readiness status of the dog.
+     * Changes the readiness for adoption status of the dog.
      *
-     * @param isReady the new readiness status of the dog
+     * @param isReady the new readiness for adoption status of the dog
      */
     public void changeIsReady(boolean isReady) {
         this.isReady = isReady;
