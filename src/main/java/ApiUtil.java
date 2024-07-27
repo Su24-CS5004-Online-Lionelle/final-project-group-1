@@ -15,10 +15,15 @@ public class ApiUtil {
     /** The HttpClient instance used to send HTTP requests. */
     private final HttpClient httpClient;
 
+    /** The ObjectMapper instance used for JSON parsing. */
+    private final ObjectMapper objectMapper;
+
+
     /**
      * Constructs a new ApiUtil.
      */
     public ApiUtil() {
+        this.objectMapper = new ObjectMapper();
         this.httpClient = HttpClient.newBuilder().build();
     }
 
@@ -60,14 +65,14 @@ public class ApiUtil {
                             breedNode.get("id").asText(),
                             breedName,
                             attributes.get("description").asText(),
-                            attributes.get("hypoallergenic").asBoolean(),
                             attributes.get("life").get("min").asInt(),
                             attributes.get("life").get("max").asInt(),
                             attributes.get("male_weight").get("min").asInt(),
                             attributes.get("male_weight").get("max").asInt(),
                             attributes.get("female_weight").get("min").asInt(),
                             attributes.get("female_weight").get("max").asInt(),
-                    );
+                            attributes.get("hypoallergenic").asBoolean()
+                            );
                     breedMap.put(breedName, breed);
                 }
             }
