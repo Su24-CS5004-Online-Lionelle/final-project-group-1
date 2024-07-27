@@ -34,4 +34,14 @@ public class ApiUtil {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
+
+    public static void main(String[] args) {
+        ApiUtil test = new ApiUtil();
+        try {
+            String breeds = test.getBreeds();
+            System.out.println("Breeds: " + breeds);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
