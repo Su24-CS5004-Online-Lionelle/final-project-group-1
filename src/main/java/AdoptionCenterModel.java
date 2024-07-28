@@ -61,7 +61,11 @@ public class AdoptionCenterModel {
     public void markDogReadyForAdoption(String dogId, boolean isReady) {
         Dog dog = getDogById(dogId);
         if (dog != null) {
-            dog.changeIsReady(isReady);
+            if (dog.getPrice() > 0) {
+                dog.changeIsReady(isReady);
+            } else {
+                throw new IllegalArgumentException("Dog must have a price.");
+            }
         } else {
             throw new IllegalArgumentException("Dog with given ID not found.");
         }
