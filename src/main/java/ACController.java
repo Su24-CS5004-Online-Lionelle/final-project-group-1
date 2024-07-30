@@ -1,21 +1,25 @@
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ACController {
     private AdoptionCenterModel model;
     private List<Dog> resultList;
     private ACFilterPlanner planner;
-    private String nameSearch;
     private boolean nameOn = false;
-    private String sexSearch;
+    private String nameSearch;
     private boolean sexOn = false;
-    private String breedSearch;
+    private String sexSearch;
     private boolean breedOn = false;
-    private String ageSearch;
+    private String breedSearch;
     private boolean ageOn = false;
-    private String weightSearch;
+    private String ageSearch;
     private boolean weightOn = false;
-    private String priceSearch;
+    private String weightSearch;
     private boolean priceOn = false;
+    private String priceSearch;
+    private String sortOn = "price";
+    private boolean ascending = true;
+
     
     public ACController(AdoptionCenterModel model) {
         this.model = model;
@@ -59,6 +63,18 @@ public class ACController {
         ageOn = false;
         weightOn = false;
         priceOn = false;
+    }
+
+    public void setResultList() {
+        Stream filteredDogs;
+        filteredDogs = planner.filter(
+        this.nameOn, this.nameSearch,
+        this.sexOn, this.sexSearch,
+        this.breedOn, this.breedSearch,
+        this.ageOn, this.ageSearch,
+        this.weightOn, this.weightSearch,
+        this.priceOn, this.priceSearch, this.sortOn, this.ascending);
+        this.resultList = filteredDogs.toList();
     }
 
 //    public List<Dog> getResultList() {
