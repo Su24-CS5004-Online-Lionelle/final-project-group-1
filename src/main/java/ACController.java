@@ -61,8 +61,29 @@ public class ACController {
         priceOn = false;
     }
 
-    public List<Dog> getResultList() {
+//    public List<Dog> getResultList() {
+//        List<Dog> filteredDogs = model.getAdoptableDogs();
+//
+//        if (nameOn) {
+//            filteredDogs = filteredDogs.stream()
+//                    .filter(dog -> dog.getName().toLowerCase().contains(nameSearch.toLowerCase()))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (sexOn) {
+//            filteredDogs = filteredDogs.stream()
+//                    .filter(dog -> dog.getSex().equalsIgnoreCase(sexSearch))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (breedOn) {
+//            filteredDogs = filteredDogs.stream()
+//                    .filter(dog -> dog.getBreed().name().toLowerCase().contains(breedSearch.toLowerCase()))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        return filteredDogs;
+//    }
 
-    }
 
 }
