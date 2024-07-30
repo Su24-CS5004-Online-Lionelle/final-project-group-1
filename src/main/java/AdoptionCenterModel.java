@@ -108,4 +108,12 @@ public class AdoptionCenterModel {
             throw new IllegalArgumentException("Dog with given ID not found.");
         }
     }
+
+    /**
+     * Returns a list of all the dogs that are adoptable.
+     * @return List of dogs that are adoptable.
+     */
+    public List<Dog> getAdoptableDogs() {
+        return this.dogs.stream().filter(dog -> dog.getIsReady() == true).toList();
+    }
 }

@@ -16,9 +16,10 @@ public class ACController {
     private boolean weightOn = false;
     private String priceSearch;
     private boolean priceOn = false;
+    private boolean adoptionReady = true;
     
     public ACController(AdoptionCenterModel model) {
         this.model = model;
-        this.ACFilterPlanner = new ACFilterPlanner(model.getAllDogs());
+        this.ACFilterPlanner = new ACFilterPlanner(model.getAdoptableDogs());
     }
 }
