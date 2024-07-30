@@ -1,6 +1,9 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -154,6 +157,33 @@ public class ACController {
             return "[]";
         }
     }
+    /**
+     * Saves the list of dogs to a json file in json format.
+     * 
+     * The contents of the file will be each dog detail in json format. It will
+     * overwrite the file if
+     * it already exists.
+     * 
+     * Saves them in the same order as getResultListToJsonFormat.
+     * 
+     * @param filename The name of the file to save the list to.
+     */
+    public void saveList(String filename) {
+        String result = "";
+        String file = filename;
+        if (!filename.endsWith(".json")) {
+            file = filename + ".json";
+        }
+        result = this.getResultListToJsonFormat();
+        File dogFile = new File(file);
+        try (FileWriter dogWriter = new FileWriter(dogFile, false)) {
+            dogWriter.write(result);
+            dogWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 //    public List<Dog> getResultList() {
 //        List<Dog> filteredDogs = model.getAdoptableDogs();
