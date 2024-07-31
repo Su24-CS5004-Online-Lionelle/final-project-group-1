@@ -3,14 +3,40 @@ import java.util.function.*;
 import java.util.stream.*;
 
 public class ACFilterPlanner {
+    /** The stream of filtered Dog objects. */
     private Stream<Dog> filtered;
+    /** The list of Dog objects to be filtered/sorted. */
     private List<Dog> dogs;
 
+    /**
+     * Constructs a new ACFilterPlanner with the given list of dogs.
+     *
+     * @param dogs the list of Dog objects to be filtered/sorted.
+     */
     public ACFilterPlanner(List<Dog> dogs) {
         this.dogs = dogs;
         this.filtered = dogs.stream();
     }
 
+    /**
+     * Filters and sorts the list of dogs.
+     *
+     * @param nameOn
+     * @param nameFilter
+     * @param sexOn
+     * @param sexFilter
+     * @param breedOn
+     * @param breedFilter
+     * @param ageOn
+     * @param ageFilter
+     * @param weightOn
+     * @param weightFilter
+     * @param priceOn
+     * @param priceFilter
+     * @param sortOn
+     * @param ascending
+     * @return the stream of filtered/sorted dogs
+     */
     public Stream<Dog> filter(boolean nameOn, String nameFilter,
                               boolean sexOn, String sexFilter,
                               boolean breedOn, String breedFilter,
@@ -38,6 +64,13 @@ public class ACFilterPlanner {
         return filtered;
     }
 
+    /**
+     *
+     *
+     * @param filterOn
+     * @param field
+     * @param value
+     */
     public void applyFilter(boolean filterOn, String field, Object value) {
         if (filterOn) {
             if (value == null || (value instanceof String && ((String) value).isEmpty())) {
