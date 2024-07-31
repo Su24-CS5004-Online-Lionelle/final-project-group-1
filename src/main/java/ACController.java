@@ -43,6 +43,8 @@ public class ACController {
     /** Flag indicating if sorting should be in ascending order. */
     private boolean ascending = true;
 
+    private ACFilterPlanner ACFilterPlanner;
+
     /**
      * Constructs a new ACController with the given model.
      *
