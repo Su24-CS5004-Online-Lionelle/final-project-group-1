@@ -43,8 +43,6 @@ public class ACController {
     /** Flag indicating if sorting should be in ascending order. */
     private boolean ascending = true;
 
-    private ACFilterPlanner ACFilterPlanner;
-
     /**
      * Constructs a new ACController with the given model.
      *
@@ -52,7 +50,7 @@ public class ACController {
      */
     public ACController(AdoptionCenterModel model) {
         this.model = model;
-        this.ACFilterPlanner = new ACFilterPlanner(model.getAdoptableDogs());
+        this.planner = new ACFilterPlanner(this.model.getAdoptableDogs());
     }
 
     /**
