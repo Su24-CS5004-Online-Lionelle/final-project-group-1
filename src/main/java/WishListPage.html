@@ -75,6 +75,69 @@
         <div id="wishlist"></div>
     </div>
 
-    <script src="scripts/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wishlistContainer = document.getElementById('wishlist');
+            const wishlist = [];
+
+            function fetchDogs() {
+                fetch('https://dogapi.dog/api/v2/breeds')
+                    .then(response => response.json())
+                    .then(data => {
+                        const dogs = data.data;
+                        displayDogs(dogs);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+            function displayDogs(dogs) {
+                dogs.forEach(dog => {
+                    const dogCard = document.createElement('div');
+                    dogCard.classList.add('dog-card');
+                    dogCard.innerHTML = `
+                        <img src="resources/dogimages/${dog.attributes.image}" alt="${dog.attributes.name}">
+                        <h2>${dog.attributes.name}</h2>
+                        <p>Breed: ${dog.attributes.breed_group}</p>
+                        <p>Age: ${dog.attributes.age}</p>
+                        <p>Sex: ${dog.attributes.sex}</p>
+                        <p>Price: $${dog.attributes.price}</p>
+                        <p>Ready for adoption: ${dog.attributes.ready_for_adoption ? 'Yes' : 'No'}</p>
+                        <button onclick="addToWishlist('${dog.id}')">Add to Wishlist</button>
+                    `;
+                    wishlistContainer.appendChild(dogCard);
+                });
+            }
+
+            window.addToWishlist = function(id) {
+                const dog = wishlist.find(d => d.id === id);
+                if (!dog) {
+                    const dog = {
+                        id,
+                        // Fetch additional details for the specific dog if needed
+                    };
+                    wishlist.push(dog);
+                    alert('Dog added to wishlist');
+                } else {
+                    alert('Dog is already in the wishlist');
+                }
+            };
+
+            document.getElementById('saveButton').addEventListener('click', () => {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(wishlist));
+                const downloadAnchorNode = document.createElement('a');
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", "wishlist.json");
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+            });
+
+            document.getElementById('homeButton').addEventListener('click', () => {
+                window.location.href = 'index.html'; // Replace with your homepage URL
+            });
+
+            fetchDogs();
+        });
+    </script>
 </body>
 </html>
