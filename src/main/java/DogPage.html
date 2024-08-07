@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dog Detail</title>
+    <title>Dog Details</title>
     <style>
         .navigation-links {
             margin-bottom: 20px;
@@ -26,6 +26,18 @@
             height: auto;
             border-radius: 8px;
         }
+        .wishlist-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .wishlist-btn:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -47,11 +59,11 @@
         <p><strong>Breed Description:</strong> <span id="dog-breed-description"></span></p>
         <p><strong>Life Expectancy:</strong> <span id="dog-life-min"></span> - <span id="dog-life-max"></span> years</p>
         <p><strong>Hypoallergenic:</strong> <span id="dog-hypoallergenic"></span></p>
+        <button class="wishlist-btn" onclick="addToWishlist()">Add to Wishlist</button>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Extract dog ID from URL
             const urlParams = new URLSearchParams(window.location.search);
             const dogId = urlParams.get('id');
             
@@ -74,10 +86,26 @@
                         document.getElementById('dog-life-min').textContent = breed.lifeMin;
                         document.getElementById('dog-life-max').textContent = breed.lifeMax;
                         document.getElementById('dog-hypoallergenic').textContent = breed.hypoallergenic ? 'Yes' : 'No';
+
+                        // Save dog data for wishlist addition
+                        window.currentDog = data;
                     })
                     .catch(error => console.error('Error:', error));
             }
         });
+
+        function addToWishlist() {
+            fetch('/wishlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(window.currentDog)
+            })
+            .then(response => response.text())
+            .then(message => alert(message))
+            .catch(error => console.error('Error:', error));
+        }
     </script>
 </body>
 </html>
