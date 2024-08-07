@@ -1,101 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dog Details</title>
-    <style>
-        .navigation-links {
-            margin-bottom: 20px;
-        }
-        .navigation-links a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #007BFF;
-        }
-        .navigation-links a:hover {
-            text-decoration: underline;
-        }
-        .dog-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            max-width: 600px;
-            margin: auto;
-        }
-        .dog-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .wishlist-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .wishlist-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Detail</title>
 </head>
 <body>
-    <div class="navigation-links">
-        <a href="/">Home</a>
-        <a href="/dogs">Back to Results List</a>
-        <a href="/wishlist">Wishlist</a>
-    </div>
-    <h1>Dog Information - <span id="dog-id"></span></h1>
-    <div class="dog-card">
-        <img id="dog-image" alt="Dog Image">
-        <h2 id="dog-name"></h2>
-        <p><strong>Breed:</strong> <span id="dog-breed"></span></p>
-        <p><strong>Age:</strong> <span id="dog-age"></span> years</p>
+    <h1>Dog Details</h1>
+    <div id="dog-info">
+        <p><strong>ID:</strong> <span id="dog-id"></span></p>
+        <p><strong>Name:</strong> <span id="dog-name"></span></p>
         <p><strong>Sex:</strong> <span id="dog-sex"></span></p>
-        <p><strong>Weight:</strong> <span id="dog-weight"></span> lbs</p>
-        <p><strong>Price:</strong> $<span id="dog-price"></span></p>
-        <p><strong>Ready for Adoption:</strong> <span id="dog-isReady"></span></p>
-        <p><strong>Breed Description:</strong> <span id="dog-breed-description"></span></p>
-        <p><strong>Life Expectancy:</strong> <span id="dog-life-min"></span> - <span id="dog-life-max"></span> years</p>
-        <p><strong>Hypoallergenic:</strong> <span id="dog-hypoallergenic"></span></p>
-        <button class="wishlist-btn" onclick="addToWishlist()">Add to Wishlist</button>
+        <p><strong>Breed:</strong> <span id="dog-breed"></span></p>
+        <p><strong>Age:</strong> <span id="dog-age"></span></p>
+        <p><strong>Weight:</strong> <span id="dog-weight"></span></p>
+        <p><strong>Price:</strong> <span id="dog-price"></span></p>
+        <p><strong>Image:</strong> <img id="dog-image" alt="Dog Image" style="max-width: 300px;"></p>
+        <button onclick="addToWishlist()">Add to Wishlist</button>
     </div>
+    <br>
+    <a href="/results">Back to Results</a> | 
+    <a href="/wishlist">Go to Wishlist</a> | 
+    <a href="/">Home</a>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // Function to get query parameter by name
+        function getQueryParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
-            const dogId = urlParams.get('id');
-            
-            if (dogId) {
-                fetch(`/dog/${dogId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('dog-id').textContent = data.id;
-                        document.getElementById('dog-name').textContent = data.name;
-                        document.getElementById('dog-sex').textContent = data.sex;
-                        document.getElementById('dog-age').textContent = data.age;
-                        document.getElementById('dog-weight').textContent = data.weight;
-                        document.getElementById('dog-price').textContent = data.price;
-                        document.getElementById('dog-isReady').textContent = data.isReady ? 'Yes' : 'No';
-                        document.getElementById('dog-image').src = data.image;
+            return urlParams.get(name);
+        }
 
-                        const breed = data.breed;
-                        document.getElementById('dog-breed').textContent = breed.name;
-                        document.getElementById('dog-breed-description').textContent = breed.description;
-                        document.getElementById('dog-life-min').textContent = breed.lifeMin;
-                        document.getElementById('dog-life-max').textContent = breed.lifeMax;
-                        document.getElementById('dog-hypoallergenic').textContent = breed.hypoallergenic ? 'Yes' : 'No';
-
-                        // Save dog data for wishlist addition
-                        window.currentDog = data;
-                    })
-                    .catch(error => console.error('Error:', error));
+        // Fetch and display dog details
+        function fetchDogDetails() {
+            const dogId = getQueryParam('id');
+            if (!dogId) {
+                document.getElementById('dog-info').innerHTML = 'No dog ID provided in the URL.';
+                return;
             }
-        });
+            fetch(`/dog?id=${dogId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('dog-id').textContent = data.id;
+                    document.getElementById('dog-name').textContent = data.name;
+                    document.getElementById('dog-sex').textContent = data.sex;
+                    document.getElementById('dog-breed').textContent = data.breed.name;
+                    document.getElementById('dog-age').textContent = data.age;
+                    document.getElementById('dog-weight').textContent = data.weight;
+                    document.getElementById('dog-price').textContent = `$${data.price.toFixed(2)}`;
+                    document.getElementById('dog-image').src = data.image;
+                    window.currentDog = data;  // Store the current dog data for wishlist addition
+                })
+                .catch(error => console.error('Error fetching dog details:', error));
+        }
 
+        // Add dog to wishlist
         function addToWishlist() {
-            fetch('/wishlist', {
+            fetch('/dog/wishlist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -104,8 +64,11 @@
             })
             .then(response => response.text())
             .then(message => alert(message))
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error adding to wishlist:', error));
         }
+
+        // Fetch dog details on page load
+        fetchDogDetails();
     </script>
 </body>
 </html>
