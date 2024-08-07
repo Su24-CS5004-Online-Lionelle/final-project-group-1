@@ -147,17 +147,14 @@ public class ACController {
     }
 
     /**
-     * Converts the resultList to JSON format.
+     * Converts the wishList to JSON format.
      *
-     * @return A JSON string representation of the resultList.
+     * @return A JSON string representation of the wishList.
      */
-    public String getResultListToJsonFormat() {
-
-        setResultList();
-
+    public String getWishListToJsonFormat() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.writeValueAsString(this.resultList);
+            return objectMapper.writeValueAsString(this.wishList);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return "[]";
@@ -165,13 +162,12 @@ public class ACController {
     }
 
     /**
-     * Saves the list of dogs to a json file in json format.
+     * Saves the wishlist to a json file in json format.
      * 
      * The contents of the file will be each dog detail in json format. It will
-     * overwrite the file if
-     * it already exists.
+     * overwrite the file if it already exists.
      * 
-     * Saves them in the same order as getResultListToJsonFormat.
+     * Saves them in the same order as getWishListToJsonFormat.
      * 
      * @param filename The name of the file to save the list to.
      */
@@ -181,7 +177,7 @@ public class ACController {
         if (!filename.endsWith(".json")) {
             file = filename + ".json";
         }
-        result = this.getResultListToJsonFormat();
+        result = this.getWishListToJsonFormat();
         File dogFile = new File(file);
         try (FileWriter dogWriter = new FileWriter(dogFile, false)) {
             dogWriter.write(result);
