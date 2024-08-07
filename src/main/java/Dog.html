@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Detail</title>
+    <style>
+        .navigation-links {
+            margin-bottom: 20px;
+        }
+        .navigation-links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .navigation-links a:hover {
+            text-decoration: underline;
+        }
+        .dog-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .dog-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation-links">
+        <a href="/">Home</a>
+        <a href="/dogs">Back to Results List</a>
+        <a href="/wishlist">Wishlist</a>
+    </div>
+    <h1>Dog Information - <span id="dog-id"></span></h1>
+    <div class="dog-card">
+        <img id="dog-image" alt="Dog Image">
+        <h2 id="dog-name"></h2>
+        <p><strong>Breed:</strong> <span id="dog-breed"></span></p>
+        <p><strong>Age:</strong> <span id="dog-age"></span> years</p>
+        <p><strong>Sex:</strong> <span id="dog-sex"></span></p>
+        <p><strong>Weight:</strong> <span id="dog-weight"></span> lbs</p>
+        <p><strong>Price:</strong> $<span id="dog-price"></span></p>
+        <p><strong>Ready for Adoption:</strong> <span id="dog-isReady"></span></p>
+        <p><strong>Breed Description:</strong> <span id="dog-breed-description"></span></p>
+        <p><strong>Life Expectancy:</strong> <span id="dog-life-min"></span> - <span id="dog-life-max"></span> years</p>
+        <p><strong>Hypoallergenic:</strong> <span id="dog-hypoallergenic"></span></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Extract dog ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const dogId = urlParams.get('id');
+            
+            if (dogId) {
+                fetch(`/dog/${dogId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('dog-id').textContent = data.id;
+                        document.getElementById('dog-name').textContent = data.name;
+                        document.getElementById('dog-sex').textContent = data.sex;
+                        document.getElementById('dog-age').textContent = data.age;
+                        document.getElementById('dog-weight').textContent = data.weight;
+                        document.getElementById('dog-price').textContent = data.price;
+                        document.getElementById('dog-isReady').textContent = data.isReady ? 'Yes' : 'No';
+                        document.getElementById('dog-image').src = data.image;
+
+                        const breed = data.breed;
+                        document.getElementById('dog-breed').textContent = breed.name;
+                        document.getElementById('dog-breed-description').textContent = breed.description;
+                        document.getElementById('dog-life-min').textContent = breed.lifeMin;
+                        document.getElementById('dog-life-max').textContent = breed.lifeMax;
+                        document.getElementById('dog-hypoallergenic').textContent = breed.hypoallergenic ? 'Yes' : 'No';
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+</body>
+</html>
