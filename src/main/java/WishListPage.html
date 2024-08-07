@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Adoption Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        #wishlist {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .dog-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dog-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .dog-card button {
+            background-color: #d9534f;
+            margin-top: 10px;
+        }
+
+        .dog-card button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dog Adoption Wishlist</h1>
+        <button id="saveButton">Save Wishlist to JSON</button>
+        <button id="homeButton">Return to Homepage</button>
+        <div id="wishlist"></div>
+    </div>
+
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>

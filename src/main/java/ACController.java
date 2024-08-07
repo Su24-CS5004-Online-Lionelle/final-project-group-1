@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,6 +43,8 @@ public class ACController {
     private String sortOn = "price";
     /** Flag indicating if sorting should be in ascending order. */
     private boolean ascending = true;
+    /** Wish list for the wish list page. */
+    private List<Dog> wishList = new ArrayList<>();
 
     /**
      * Constructs a new ACController with the given model.
@@ -157,6 +160,7 @@ public class ACController {
             return "[]";
         }
     }
+
     /**
      * Saves the list of dogs to a json file in json format.
      * 
@@ -182,5 +186,51 @@ public class ACController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns the list of dogs in the wish list.
+     *
+     * @return a List of Dog objects representing the wish list.
+     */
+    public List<Dog> getWishList() {
+        return this.wishList;
+    }
+
+    /**
+     * Adds a Dog to the wish list if it does not already exist.
+     *
+     * @param dog the Dog object to be added to the wish list.
+     * @return a String message indicating whether the dog was added or already exists in the wish list.
+     */
+    public String addToWishList(Dog dog) {
+        boolean alrdyExist = false;
+        for (Dog wishDog : wishList) {
+            if (dog.equals(wishDog)) {
+                alrdyExist = true;
+            }
+        }
+        if (alrdyExist == false) {
+            this.wishList.add(dog);
+            return dog.getName() + " has been added to your wish list.";
+        }
+        return dog.getName() + " already exists in your wish list.";
+    }
+
+    /**
+     * Removes a Dog from the wish list based on its ID.
+     *
+     * @param id the ID of the Dog to be removed from the wish list.
+     * @return a String message indicating whether the dog was removed or could not be found in the wish list.
+     */
+    public String removeFromWishList(String id) {
+        for (int index = 0; index < wishList.size(); index++) {
+            if (id.equals(wishList.get(index).getID())) {
+                String name = wishList.get(index).getName();
+                this.wishList.remove(index);
+                return name + "was removed from wish list.";
+            }
+        }
+        return id + " could not be found in the wish list.";
     }
 }
