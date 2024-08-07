@@ -170,8 +170,50 @@
         /*dog breed buttons*/
 
         <section class="breed-button">
+        <h2>Filter by Breed</h2>
+            <div th:each"breed : ${breeds}">
+            <button class="breed-button" th:text="${breed.name}"
+            th:onclick="'filterByBreed(\'' + ${breed.id} + '\')'"></button>
+    </div>
+    </section>
 
-        </section>
+    <section class="advanced-search">
+        <h2>Advanced Search</h2>
+        <form action="/* ip address */" method="get">
+            /* user inputs the dog's name */
+            <input type="text" name="name" placeholder="Name">
+
+            /* user inputs dog's sex */
+            <select name="sex">
+                <option value="">Any Sex</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            /* user inputs dog's age range */
+            <input type="number" name="minAge" placeholder="Min Age">
+            <input type="number" name="maxAge" placeholder="Max Age">
+
+            /* user inputs dog's weight range */
+            <input type="number" name="minWeight" placeholder="Min Weight">
+            <input type="number" name="maxWeight" placeholder="Max Weight">
+
+            /* user inputs dog's price range */
+            <input type="number" name="minPrice" placeholder="Min Price">
+            <input type="number" name="maxPrice" placeholder="Max Price">
+
+            /* submit button to carry out advanced search */
+            <button type="submit">Search</button>
+
+        </form>
+    </section>
+
+
+
+
+
+    </section>
+
     </div>
     </style>
 
