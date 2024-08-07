@@ -14,9 +14,9 @@ public class AdoptionCenterModelTest {
     public void setUp() {
         model = new AdoptionCenterModel();
         Breed breed = new Breed("1", "New Breed", "Description", 10, 12, 50, 70, 45, 60, false);
-        dog1 = new Dog("1", "Dog1", "f", breed, 2, 45);
-        dog2 = new Dog("2", "Dog2", "f", breed, 3, 50);
-        dog3 = new Dog("3", "Dog3", "m", breed, 4, 55);
+        dog1 = new Dog("1", "Dog1", "f", breed, 2, 45, "1.png");
+        dog2 = new Dog("2", "Dog2", "f", breed, 3, 50, "2.png");
+        dog3 = new Dog("3", "Dog3", "m", breed, 4, 55, "3.png");
     }
 
     @Test

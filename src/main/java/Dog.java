@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Dog {
 
     /** the unique identifier of the dog */
@@ -18,11 +20,17 @@ public class Dog {
     /** the weight of the dog in pounds */
     private double weight;
 
+    /** the path to the image file of the dog. */
+    private String image;
+
     /** the price of the dog */
     private double price;
 
     /** the readiness for adoption status of the dog */
     private boolean isReady;
+    
+    /** the directory for all the dog images */
+    private static final String IMAGE_DIRECTORY = "src/main/resources/dogimages/";
 
       /**
      * Constructs a new Dog with the specified attributes, defaulting price to 0.00 and readiness for adoption to false.
@@ -33,10 +41,11 @@ public class Dog {
      * @param breed  the breed of the dog
      * @param age    the age of the dog in years
      * @param weight the weight of the dog in pounds
+     * @param image   the image path of the dog
      * @throws IllegalArgumentException if any argument is invalid
      */
-    public Dog(String id, String name, String sex, Breed breed, int age, double weight) {
-        this(id, name, sex, breed, age, weight, 0.00, false);
+    public Dog(String id, String name, String sex, Breed breed, int age, double weight, String image) {
+        this(id, name, sex, breed, age, weight, image, 0.00, false);
     }
 
     /**
@@ -48,12 +57,13 @@ public class Dog {
      * @param breed   the breed of the dog
      * @param age     the age of the dog in years
      * @param weight  the weight of the dog in pounds
+     * @param image   the image path of the dog
      * @param price   the price of the dog
      * @param isReady the readiness for adoption status of the dog
      * @throws IllegalArgumentException if any argument is invalid
      */
-    public Dog(String id, String name, String sex, Breed breed, int age, double weight, double price, boolean isReady) throws IllegalArgumentException {
-        if (id == null || name == null || sex == null || breed == null) {
+    public Dog(String id, String name, String sex, Breed breed, int age, double weight, String image, double price, boolean isReady) throws IllegalArgumentException {
+        if (id == null || name == null || sex == null || breed == null || image == null) {
             throw new IllegalArgumentException("Fields cannot be null.");
         }
         if (!(sex.equalsIgnoreCase("m") || sex.equalsIgnoreCase("f"))) {
@@ -61,6 +71,10 @@ public class Dog {
         }
         if (age <= 0) {
             throw new IllegalArgumentException("Dog age must be greater than zero.");
+        }
+        File file = new File(IMAGE_DIRECTORY + image);
+        if (!file.exists() || file.isDirectory()) {
+            throw new IllegalArgumentException("The image does not exist or the path is not valid. Please place image in correct folder.");
         }
         if (weight <= 0) {
             throw new IllegalArgumentException("Dog weight must be greater than zero.");
@@ -74,6 +88,7 @@ public class Dog {
         this.breed = breed;
         this.age = age;
         this.weight = weight;
+        this.image = image;
         this.price = price;
         this.isReady = isReady;
     }
@@ -133,6 +148,15 @@ public class Dog {
     }
 
     /**
+     * Returns the image path of the dog.
+     * 
+     * @return the image path of the dog
+     */
+    public String getImage() {
+        return this.image;
+    }
+
+    /**
      * Returns the price of the dog.
      *
      * @return the price of the dog
@@ -183,6 +207,14 @@ public class Dog {
             throw new IllegalArgumentException("Dog weight must be greater than zero.");
         }
         this.weight = weight;
+    }
+
+    public void changeImage(String image) throws IllegalArgumentException {
+        File file = new File(IMAGE_DIRECTORY + image);
+        if (!file.exists() || file.isDirectory()) {
+            throw new IllegalArgumentException("The image does not exist or the path is not valid. Please place image in correct folder.");
+        }
+        this.image = IMAGE_DIRECTORY + image;
     }
 
     /**
