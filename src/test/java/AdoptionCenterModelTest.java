@@ -155,4 +155,26 @@ public class AdoptionCenterModelTest {
         model.addDog(dog3);
         assertThrows(IllegalArgumentException.class, () -> model.markDogReadyForAdoption("4", true));
     }
+
+    @Test
+    public void testGetAdoptableDogs() {
+        model.addDog(dog1);
+        model.addDog(dog2);
+        model.addDog(dog3);
+
+        model.changeDogPrice(dog1.getID(), 5.0);
+        model.changeDogPrice(dog2.getID(), 5.0);
+        model.changeDogPrice(dog3.getID(), 5.0);
+
+        model.markDogReadyForAdoption(dog1.getID(), true);
+        model.markDogReadyForAdoption(dog2.getID(), true);
+        model.markDogReadyForAdoption(dog3.getID(), false);
+
+        List<Dog> adoptableDogs = model.getAdoptableDogs();
+
+        assertEquals(2, adoptableDogs.size());
+        assertEquals(dog1, adoptableDogs.get(0));
+        assertEquals(dog2, adoptableDogs.get(1));
+    }
+
 }
