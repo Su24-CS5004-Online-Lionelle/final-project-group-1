@@ -79,14 +79,4 @@ public class ApiUtil {
         }
         return breedMap;
     }
-
-    public static void main(String[] args) {
-        ApiUtil test = new ApiUtil();
-        try {
-            String breeds = test.getBreeds();
-            System.out.println("Breeds: " + breeds);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }
