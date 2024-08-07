@@ -88,7 +88,7 @@ public class Dog {
         this.breed = breed;
         this.age = age;
         this.weight = weight;
-        this.image = image;
+        this.image = IMAGE_DIRECTORY + image;
         this.price = price;
         this.isReady = isReady;
     }
