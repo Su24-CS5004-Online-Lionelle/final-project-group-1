@@ -233,4 +233,14 @@ public class ACController {
         }
         return id + " could not be found in the wish list.";
     }
+
+    /**
+     * Gets the selected dog object from the specified id.
+     * 
+     * @param id the id of the dog
+     * @return dog object from the search.
+     */
+    public Dog getDog(String id) {
+        return this.model.getDogById(id);
+    }
 }
