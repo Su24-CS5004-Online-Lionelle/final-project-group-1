@@ -204,17 +204,13 @@ public class ACController {
      * @return a String message indicating whether the dog was added or already exists in the wish list.
      */
     public String addToWishList(Dog dog) {
-        boolean alrdyExist = false;
-        for (Dog wishDog : wishList) {
-            if (dog.equals(wishDog)) {
-                alrdyExist = true;
-            }
+        boolean alreadyExists = wishList.stream().anyMatch(wishDog -> wishDog.getID().equals(dog.getID()));
+        if (!alreadyExists) {
+            wishList.add(dog);
+            return dog.getName() + " has been added to your wishlist.";
+        } else {
+            return dog.getName() + " is already in your wishlist.";
         }
-        if (alrdyExist == false) {
-            this.wishList.add(dog);
-            return dog.getName() + " has been added to your wish list.";
-        }
-        return dog.getName() + " already exists in your wish list.";
     }
 
     /**
