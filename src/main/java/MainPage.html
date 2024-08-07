@@ -238,7 +238,9 @@
         async function fetchBreeds() {
             try {
                 const response = await fetch('/api/breeds');
+                // Parse the JSON response
                 const breeds = await response.json();
+                // Call the function to display the breeds
                 displayBreeds(breeds);
             } catch (error) {
                 console.error("Error in fetching breeds", error);
@@ -252,11 +254,17 @@
          */
         function displayBreeds() {
             const breedButtonsContainer = document.getElementById("breed-buttons");
+            // Iterate over each breed in the array
             breeds.forEach(breed => {
+                // Create a new button element
                 const button = document.createElement('button');
+                // Set the button text to the breed name
                 button.textContent = breed.name;
+                //add breed button class to breed button
                 button.classList.add('breed-button');
+                // Set the onclick event to filter by this breed
                 button.onclick = () => filterByBreed(breed.id);
+                // Append the button to the container
                 breedButtonsContainer.appendChild(button);
             })
 
@@ -271,8 +279,10 @@
         async function fetchYoungestDogs() {
             try {
                 const response = await fetch('/api/youngest-dogs');
+                // Parse the JSON response
                 const dogs = await response.json();
-                displayYoungestDogs()
+                // Call the function to display the youngest dogs
+                displayYoungestDogs(dogs);
             } catch (error) {
                 console.error('Error fetching youngest dogs:', error);
             }
@@ -284,6 +294,7 @@
          * @param {Array} dogs - An array of dog objects
          */
         function displayYoungestDogs(dogs) {
+            // Get the container element for youngest dogs
             const youngestDogsContainer = document.getElementById("youngest-dogs");
             // Iterate over each dog in the array
             dogs.forEach(dog => {
@@ -294,13 +305,20 @@
                 // Set the inner HTML of the dog card
                 dogCard.innerHTML = `
                     <a href="/dog?id=${dog.id}" class="dog-card-link">
+                    <!-- Container for full dog card -->
                         <div class="dog-card-content">
+                        <!-- Container for the dog's image -->
                             <div class="dog-image">
+                            <!-- Dog's image -->
                                 <img src="/dogimages/${dog.image}" alt="Dog Image">
                             </div>
+                             <!-- Container for the dog's details -->
                             <div class="dog-details">
+                            <!-- Dog's name as a heading -->
                                 <h3>${dog.name}</h3>
+                                 <!-- Dog's breed -->
                                 <p>Breed: ${dog.breed.name}</p>
+                                <!-- Dog's age -->
                                 <p>Age: ${dog.age} years</p>
                             </div>
                         </div>
