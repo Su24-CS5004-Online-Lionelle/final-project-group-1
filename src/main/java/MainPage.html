@@ -219,17 +219,121 @@
     </footer>
 
     <script>
+
+        /**
+         * Filters dogs by breed and navigates to the filtered results page.
+         * @function filterByBreed
+         * @param {string} breedId - The ID of the breed to filter by
+         */
         function filterByBreed(breedId) {
             window.location.href = '/dogs?breed=' + breedId;
         }
 
+        /**
+         * Fetches breed data from the server and displays it.
+         * @async
+         * @function fetchBreeds
+         * @returns {Promise<void>}
+         */
         async function fetchBreeds() {
             try {
                 const response = await fetch('/api/breeds');
                 const breeds = await response.json();
-                displayBreeds()
+                displayBreeds(breeds);
+            } catch (error) {
+                console.error("Error in fetching breeds", error);
             }
         }
+
+        /**
+         * Displays breed buttons based on the fetched breed data.
+         * @function displayBreeds
+         * @param {Array} breeds - An array of breed objects
+         */
+        function displayBreeds() {
+            const breedButtonsContainer = document.getElementById("breed-buttons");
+            breeds.forEach(breed => {
+                const button = document.createElement('button');
+                button.textContent = breed.name;
+                button.classList.add('breed-button');
+                button.onclick = () => filterByBreed(breed.id);
+                breedButtonsContainer.appendChild(button);
+            })
+
+        }
+
+        /**
+         * Fetches data about the youngest dogs from the server and displays it.
+         * @async
+         * @function fetchYoungestDogs
+         * @returns {Promise<void>}
+         */
+        async function fetchYoungestDogs() {
+            try {
+                const response = await fetch('/api/youngest-dogs');
+                const dogs = await response.json();
+                displayYoungestDogs()
+            } catch (error) {
+                console.error('Error fetching youngest dogs:', error);
+            }
+        }
+
+        /**
+         * Displays cards for the youngest dogs.
+         * @function displayYoungestDogs
+         * @param {Array} dogs - An array of dog objects
+         */
+        function displayYoungestDogs(dogs) {
+            const youngestDogsContainer = document.getElementById("youngest-dogs");
+            // Iterate over each dog in the array
+            dogs.forEach(dog => {
+                // Create a new div element for the dog card
+                const dogCard = document.createElement('div');
+                // Add the 'dog-card' class to the div
+                dogCard.classList.add('dog-card')
+                // Set the inner HTML of the dog card
+                dogCard.innerHTML = `
+                    <a href="/dog?id=${dog.id}" class="dog-card-link">
+                        <div class="dog-card-content">
+                            <div class="dog-image">
+                                <img src="/dogimages/${dog.image}" alt="Dog Image">
+                            </div>
+                            <div class="dog-details">
+                                <h3>${dog.name}</h3>
+                                <p>Breed: ${dog.breed.name}</p>
+                                <p>Age: ${dog.age} years</p>
+                            </div>
+                        </div>
+                    </a>
+                    `;
+                youngestDogsContainer.appendChild(dogCard);
+            });
+        }
+
+        /**
+         * Handles the submission of the advanced search form.
+         * @function handleAdvancedSearch
+         * @param {Event} event - The form submission event
+         */
+        function advancedSearch() {
+            // Prevent the default
+            event.preventDefault();
+            // Create a FormData object from the form
+            const formData = new FormData(event.target);
+            // Convert the form data to URL parameters
+            const searchParams = new URLSearchParams(formData);
+            // Redirect to the search results page with the form data as URL parameters
+            window.location.href = '/search?' + searchParams.toString();
+        }
+
+        // Add event listener for the advanced search form
+        document.getElementById('advanced-search-form').addEventListener('submit', advancedSearch)
+
+        // Call these functions when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchBreeds();
+            fetchYoungestDogs();
+        });
 
 
     </script>
