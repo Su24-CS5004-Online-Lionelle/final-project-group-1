@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.fasterxml.woodstox:woodstox-core:6.5.0'
     // jackson dataformat csv
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.13.0'
+    // springframework
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
 test {
