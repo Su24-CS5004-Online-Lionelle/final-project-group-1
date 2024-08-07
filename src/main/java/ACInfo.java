@@ -71,7 +71,6 @@ public class ACInfo {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        ACController controller = new ACController(model);
-        System.out.println(model.getAllDogs().toString());
+        new ACController(model);
     }
 }
