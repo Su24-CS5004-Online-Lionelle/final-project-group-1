@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>D.E.J.P Dog Adoption Center</title>
     <style>
+    /* Sets the base font and removes default margins and padding */
     body {
     font-family: "American Typewriter", sans-serif;
     margin: 0;
@@ -11,12 +12,14 @@
     background-color: #f0f0f0;
     }
 
+    /* Set center for main content, outlines max width */
     .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20 px;
     }
 
+    /* Style the header */
     header {
         background-color: darkcyan;
         color: white;
@@ -24,22 +27,137 @@
         padding: 20px;
     }
 
+    /* Style navigation bar */
     nav {
         background-color: cadetblue;
         padding: 10px;
     }
 
+    /* Remove bullet points from nav bar */
     nav ul {
         list-style-type: none;
         padding: 0;
         text-align: center
     }
 
+    /* Display nav items in order */
     nav ul li {
         display: inline;
         margin: 10px;
     }
-</head>
+
+    /* Style navigation link */
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Arrange breed button to flex container */
+    .breed-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    /* Style breed buttons */
+    .breed-button {
+        background-color: cadetblue;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Style advanced search */
+    .advanced-search {
+        background-color: #e0e0e0;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    /* Style advance search user input */
+    .advanced-search input, .advanced-search select {
+        width: 100%;
+        padding: 5px;
+    }
+
+
+    /* Arrange search into grid form */
+    .advanced-search form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    /* Add margins to youngest dogs */
+    .youngest-dogs {
+        margin-top: 20px;
+    }
+
+    /* Arrange dog cards to flex */
+    .dog-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    /* Style dog cards */
+    .dog-card {
+        width: 300px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    /* Style dog card link */
+    .dog-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    /* Style for dog images */
+    .dog-image {
+        width: 40%;
+        min-height: 150px;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Dog images fitting format */
+    .dog-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    /* Style dog details in container */
+    .dog-details {
+        width: 60%;
+        padding: 10px;
+    }
+
+    /* Remove top margin for dog name */
+    .dog-details h3 {
+        margin-top: 0;
+    }
+
+
+
+
+
+
+
+    </head>
 <body>
     </style>
 
