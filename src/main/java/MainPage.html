@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D.E.J.P Dog Adoption Center</title>
     <style>
     /* Sets the base font and removes default margins and padding */
@@ -161,19 +162,18 @@
 
     <nav>
         <ul>
-            /* Where ip links will be */
-
+            <li><a href="/">Home</a></li>
+            <li><a href="/dogs">Available Dogs</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 
     <div class="container">
         /*dog breed buttons*/
-
         <section class="breed-button">
         <h2>Filter by Breed</h2>
-            <div th:each"breed : ${breeds}">
-            <button class="breed-button" th:text="${breed.name}"
-            th:onclick="'filterByBreed(\'' + ${breed.id} + '\')'"></button>
+            <div id="breed-buttons">
     </div>
     </section>
 
@@ -208,17 +208,31 @@
         </form>
     </section>
 
-
-
-
-
+    <section class="youngest-dogs">
+        <h2>D.E.J.P Dog Adoption Center's Youngest Dogs</h2>
+        <div class="youngest-dogs-container" id="youngest-dogs"></div>
     </section>
-
     </div>
-    </style>
+
+    <footer>
+        <p>&copy; 2024 Group 1 Final Project!</p>
+    </footer>
+
+    <script>
+        function filterByBreed(breedId) {
+            window.location.href = '/dogs?breed=' + breedId;
+        }
+
+        async function fetchBreeds() {
+            try {
+                const response = await fetch('/api/breeds');
+                const breeds = await response.json();
+                displayBreeds()
+            }
+        }
 
 
-
+    </script>
 
 </body>
 </html>
