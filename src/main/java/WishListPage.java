@@ -133,25 +133,4 @@ public class WishListPage extends JFrame {
             JOptionPane.showMessageDialog(this, "Error saving wishlist: " + e.getMessage());
         }
     }
-
-    /**
-     * Main method for testing the WishListPage.
-     */
-    public static void main(String[] args) {
-        // Sample wishlist for testing
-        ApiUtil util = new ApiUtil();
-        try {
-            Map<String, Breed> breeds = util.parseBreeds(util.getBreeds());
-            Breed sampleBreed = breeds.get("Hokkaido");
-            List<Dog> sampleWishlist = List.of(
-                    new Dog("1", "Buddy", "m", sampleBreed, 3, 70.0, "1.png"),
-                    new Dog("2", "Lucy", "f", sampleBreed, 5, 60.0, "2.png")
-            );
-
-            // Create and display the wishlist page
-            new WishListPage(sampleWishlist);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }
