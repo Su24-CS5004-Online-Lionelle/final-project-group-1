@@ -147,6 +147,15 @@ public class ACController {
     }
 
     /**
+     * Gets the result list from the filtered list function.
+     * 
+     * @return the result list.
+     */
+    public List<Dog> getResultList() {
+        return this.resultList;
+    }
+
+    /**
      * Converts the wishList to JSON format.
      *
      * @return A JSON string representation of the wishList.
