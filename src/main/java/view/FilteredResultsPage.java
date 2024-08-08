@@ -36,14 +36,14 @@ public class FilteredResultsPage extends JFrame {
         });
         topPanel.add(sortComboBox);
 
-        JButton homeButton = new JButton("Return to Home");
+        JButton homeButton = new JButton("Home");
+        topPanel.add(homeButton);
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                returnToHomePage();
+                ((CardLayout) getParent().getLayout()).show(getParent(), "HomePage");
             }
         });
-        topPanel.add(homeButton);
 
         resultsPanel = new JPanel();
         resultsPanel.setLayout(new BoxLayout(resultsPanel, BoxLayout.Y_AXIS));
@@ -119,13 +119,6 @@ public class FilteredResultsPage extends JFrame {
         }
 
         displayDogs();
-    }
-
-    private void returnToHomePage() {
-        this.dispose();
-        HomePage homePage = new HomePage();
-        homePage.setVisible(true);
-
     }
 
     private void viewDog(Dog dog) {
