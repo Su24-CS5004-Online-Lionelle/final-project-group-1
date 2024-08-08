@@ -23,6 +23,11 @@ public class ApiUtilTest {
         apiUtil = new ApiUtil();
     }
 
+    /**
+     * Tests parsing of valid breed JSON data.
+     * Verifies that the parsed data correctly populates a Breed object with expected values.
+     * @throws IOException if there's an error parsing the JSON
+     */
     @Test
     public void testParseBreeds() throws IOException {
         String json = "{\"data\":[{\"id\":\"1\",\"attributes\":{\"name\":\"Beagle\",\"description\":\"Friendly\",\"life\":{\"min\":10,\"max\":12},\"male_weight\":{\"min\":25,\"max\":32},\"female_weight\":{\"min\":23,\"max\":30},\"hypoallergenic\":false}}]}";
@@ -43,6 +48,11 @@ public class ApiUtilTest {
         assertFalse(breed.hypoallergenic());
     }
 
+    /**
+     * Tests parsing of empty breed JSON data.
+     * Verifies that an empty JSON results in an empty map.
+     * @throws IOException if there's an error parsing the JSON
+     */
     @Test
     public void testParseBreedsEmpty() throws IOException {
         String empty = "{\"data\":[]}";
@@ -52,6 +62,10 @@ public class ApiUtilTest {
         assertEquals(0, map.size());
     }
 
+    /**
+     * Tests parsing of invalid JSON data.
+     * Verifies that an IOException is thrown when parsing invalid JSON.
+     */
     @Test
     public void testParseBreedsInvalid() {
         String invalid = "test";
@@ -61,6 +75,10 @@ public class ApiUtilTest {
         });
     }
 
+    /**
+     * Tests the getBreeds method of ApiUtil.
+     * Verifies that the method doesn't throw an exception and returns a non-empty string.
+     */
     @Test
     public void testGetBreeds() {
         assertDoesNotThrow(() -> {
@@ -70,6 +88,11 @@ public class ApiUtilTest {
         });
     }
 
+    /**
+     * Tests the entire API workflow.
+     * Verifies that breeds can be fetched from the API and parsed correctly,
+     * resulting in a map with the expected number of breeds and specific breed data.
+     */
     @Test
     public void testApiWorks() {
         try {
