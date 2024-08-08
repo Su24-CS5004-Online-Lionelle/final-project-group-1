@@ -19,7 +19,6 @@ public class DogPage extends JPanel {
     private final JLabel imageLabel;
     private final JLabel priceLabel;
     private final JLabel readyLabel;
-
     private final JLabel breedNameLabel;
     private final JLabel breedDescriptionLabel;
     private final JLabel breedLifeMinLabel;
@@ -29,7 +28,6 @@ public class DogPage extends JPanel {
     private final JLabel breedFemaleWeightMinLabel;
     private final JLabel breedFemaleWeightMaxLabel;
     private final JLabel breedHypoallergenicLabel;
-
     private final JButton backButton;
     
     public DogPage() {
