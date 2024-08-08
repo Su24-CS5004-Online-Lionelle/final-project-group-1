@@ -17,19 +17,29 @@ import java.util.stream.Collectors;
  * It displays breed buttons, young dogs, and provides search functionality.
  */
 public class MainPage extends JFrame {
-    /** The controller for managing dog adoption data and operations. */
+    /**
+     * The controller for managing dog adoption data and operations.
+     */
     private ACController controller;
 
-    /** The main panel containing all GUI components. */
+    /**
+     * The main panel containing all GUI components.
+     */
     private JPanel mainPanel;
 
-    /** Panel for displaying breed buttons. */
+    /**
+     * Panel for displaying breed buttons.
+     */
     private JPanel breedButtonsPanel;
 
-    /** Panel for displaying young dogs. */
+    /**
+     * Panel for displaying young dogs.
+     */
     private JPanel youngDogsPanel;
 
-    /** Panel for search functionality. */
+    /**
+     * Panel for search functionality.
+     */
     private JPanel searchPanel;
 
     public MainPage(ACController controller) {
@@ -254,3 +264,4 @@ public class MainPage extends JFrame {
         // Here you would typically load your dogs into the model
         SwingUtilities.invokeLater(() -> new MainPage(controller));
     }
+}
