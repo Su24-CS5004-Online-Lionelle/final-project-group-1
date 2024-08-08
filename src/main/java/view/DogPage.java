@@ -12,7 +12,6 @@ public class DogPage extends JPanel {
 
     private final JLabel nameLabel;
     private final JLabel sexLabel;
-    private final JLabel breedLabel;
     private final JLabel ageLabel;
     private final JLabel weightLabel;
     private final JLabel imageLabel;
@@ -35,13 +34,12 @@ public class DogPage extends JPanel {
         
         nameLabel = new JLabel("Name: ");
         sexLabel = new JLabel("Sex: ");
-        breedLabel = new JLabel("Breed: ");
         ageLabel = new JLabel("Age: ");
         weightLabel = new JLabel("Weight: ");
         imageLabel = new JLabel();
         priceLabel = new JLabel("Price: ");
         readyLabel = new JLabel("Ready for Adoption: ");
-        breedNameLabel = new JLabel("Breed Name: ");
+        breedNameLabel = new JLabel("Breed: ");
         breedDescriptionLabel = new JLabel("Description: ");
         breedLifeMinLabel = new JLabel("Life Expectancy Min: ");
         breedLifeMaxLabel = new JLabel("Life Expectancy Max: ");
@@ -60,8 +58,6 @@ public class DogPage extends JPanel {
         gbc.gridy++;
         add(sexLabel, gbc);
         gbc.gridy++;
-        add(breedLabel, gbc);
-        gbc.gridy++;
         add(ageLabel, gbc);
         gbc.gridy++;
         add(weightLabel, gbc);
@@ -72,7 +68,6 @@ public class DogPage extends JPanel {
         gbc.gridy++;
         add(readyLabel, gbc);
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.WEST;
         add(breedNameLabel, gbc);
         gbc.gridy++;
         add(breedDescriptionLabel, gbc);
@@ -106,12 +101,11 @@ public class DogPage extends JPanel {
         nameLabel.setText("Name: " + dog.getName());
         sexLabel.setText("Sex: " + (dog.getSex().equals("m") ? "Male" : "Female"));
         Breed breed = dog.getBreed();
-        breedLabel.setText("Breed: " + breed.name());
         ageLabel.setText("Age: " + dog.getAge() + " years");
         weightLabel.setText("Weight: " + dog.getWeight() + " pounds");
         priceLabel.setText("Price: $" + dog.getPrice());
         readyLabel.setText("Ready for Adoption: " + (dog.getIsReady() ? "Yes" : "No"));
-        breedNameLabel.setText("Breed Name: " + breed.name());
+        breedNameLabel.setText("Breed: " + breed.name());
         breedDescriptionLabel.setText("Description: " + breed.description());
         breedLifeMinLabel.setText("Life Expectancy Min: " + breed.lifeMin() + " years");
         breedLifeMaxLabel.setText("Life Expectancy Max: " + breed.lifeMax() + " years");
