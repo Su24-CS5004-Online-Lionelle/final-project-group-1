@@ -1,5 +1,7 @@
 package view;
 
+import controller.ACController;
+import model.AdoptionCenterModel;
 import model.Dog;
 
 import javax.swing.*;
@@ -123,8 +125,10 @@ public class FilteredResultsPage extends JFrame {
 
     private void returnToHomePage() {
         this.dispose();
-        HomePage homePage = new HomePage();
-        homePage.setVisible(true);
+        AdoptionCenterModel model = new AdoptionCenterModel();
+        ACController controller = new ACController(model);
+        MainPage mainPage = new MainPage(controller);
+        mainPage.setVisible(true);
 
     }
 
