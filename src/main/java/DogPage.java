@@ -53,5 +53,98 @@ public class DogPage extends JPanel {
         breedHypoallergenicLabel = new JLabel("Hypoallergenic: ");
         
         backButton = new JButton("Back");
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(nameLabel, gbc);
+        
+        gbc.gridy++;
+        add(sexLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedLabel, gbc);
+        
+        gbc.gridy++;
+        add(ageLabel, gbc);
+        
+        gbc.gridy++;
+        add(weightLabel, gbc);
+        
+        gbc.gridy++;
+        add(imageLabel, gbc);
+        
+        gbc.gridy++;
+        add(priceLabel, gbc);
+        
+        gbc.gridy++;
+        add(readyLabel, gbc);
+        
+        // Add breed details
+        gbc.gridy++;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(breedNameLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedDescriptionLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedLifeMinLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedLifeMaxLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedMaleWeightMinLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedMaleWeightMaxLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedFemaleWeightMinLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedFemaleWeightMaxLabel, gbc);
+        
+        gbc.gridy++;
+        add(breedHypoallergenicLabel, gbc);
+        
+        gbc.gridy++;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(backButton, gbc);
+        
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((CardLayout) getParent().getLayout()).show(getParent(), "HomePage");
+            }
+        });
+    }
+
+    public void displayDog(Dog dog) {
+        nameLabel.setText("Name: " + dog.getName());
+        sexLabel.setText("Sex: " + (dog.getSex().equals("m") ? "Male" : "Female"));
+        Breed breed = dog.getBreed();
+        breedLabel.setText("Breed: " + breed.name());
+        ageLabel.setText("Age: " + dog.getAge() + " years");
+        weightLabel.setText("Weight: " + dog.getWeight() + " pounds");
+        priceLabel.setText("Price: $" + dog.getPrice());
+        readyLabel.setText("Ready for Adoption: " + (dog.getIsReady() ? "Yes" : "No"));
+
+        breedNameLabel.setText("Breed Name: " + breed.name());
+        breedDescriptionLabel.setText("Description: " + breed.description());
+        breedLifeMinLabel.setText("Life Expectancy Min: " + breed.lifeMin() + " years");
+        breedLifeMaxLabel.setText("Life Expectancy Max: " + breed.lifeMax() + " years");
+        breedMaleWeightMinLabel.setText("Male Weight Min: " + breed.maleWeightMin() + " pounds");
+        breedMaleWeightMaxLabel.setText("Male Weight Max: " + breed.maleWeightMax() + " pounds");
+        breedFemaleWeightMinLabel.setText("Female Weight Min: " + breed.femaleWeightMin() + " pounds");
+        breedFemaleWeightMaxLabel.setText("Female Weight Max: " + breed.femaleWeightMax() + " pounds");
+        breedHypoallergenicLabel.setText("Hypoallergenic: " + (breed.hypoallergenic() ? "Yes" : "No"));
+
+        ImageIcon imageIcon = new ImageIcon(dog.getImage());
+        Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(image);
+        imageLabel.setIcon(imageIcon);
     }
 }
