@@ -12,7 +12,6 @@ public class DogPage extends JPanel {
 
     private final JLabel nameLabel;
     private final JLabel sexLabel;
-    private final JLabel breedLabel;
     private final JLabel ageLabel;
     private final JLabel weightLabel;
     private final JLabel imageLabel;
@@ -35,7 +34,6 @@ public class DogPage extends JPanel {
         
         nameLabel = new JLabel("Name: ");
         sexLabel = new JLabel("Sex: ");
-        breedLabel = new JLabel("Breed: ");
         ageLabel = new JLabel("Age: ");
         weightLabel = new JLabel("Weight: ");
         imageLabel = new JLabel();
@@ -60,8 +58,6 @@ public class DogPage extends JPanel {
         gbc.gridy++;
         add(sexLabel, gbc);
         gbc.gridy++;
-        add(breedLabel, gbc);
-        gbc.gridy++;
         add(ageLabel, gbc);
         gbc.gridy++;
         add(weightLabel, gbc);
@@ -72,7 +68,6 @@ public class DogPage extends JPanel {
         gbc.gridy++;
         add(readyLabel, gbc);
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.WEST;
         add(breedNameLabel, gbc);
         gbc.gridy++;
         add(breedDescriptionLabel, gbc);
@@ -106,7 +101,6 @@ public class DogPage extends JPanel {
         nameLabel.setText("Name: " + dog.getName());
         sexLabel.setText("Sex: " + (dog.getSex().equals("m") ? "Male" : "Female"));
         Breed breed = dog.getBreed();
-        breedLabel.setText("Breed: " + breed.name());
         ageLabel.setText("Age: " + dog.getAge() + " years");
         weightLabel.setText("Weight: " + dog.getWeight() + " pounds");
         priceLabel.setText("Price: $" + dog.getPrice());
