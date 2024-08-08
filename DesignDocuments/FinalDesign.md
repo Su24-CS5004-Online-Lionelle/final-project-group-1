@@ -113,6 +113,7 @@ class ACController {
     +addToWishList(dog: Dog): String
     +removeFromWishList(id: String): String
     +getDog(id: String): Dog
+    +getAdoptableDogs(): List~Dog~
 }
 Breed --> ApiUtil
 Dog --> Breed
