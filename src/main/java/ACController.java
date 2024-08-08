@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-@RestController
-@RequestMapping("/dog")
 public class ACController {
     /** The model containing adoption center data. */
     private AdoptionCenterModel model;
@@ -48,6 +45,8 @@ public class ACController {
     private boolean ascending = true;
     /** Wish list for the wish list page. */
     private List<Dog> wishList = new ArrayList<>();
+    /** List for the home page. */
+    private List<Dog> homeList = new ArrayList<>();
 
     /**
      * Constructs a new ACController with the given model.
@@ -57,6 +56,22 @@ public class ACController {
     public ACController(AdoptionCenterModel model) {
         this.model = model;
         this.planner = new ACFilterPlanner(this.model.getAdoptableDogs());
+    }
+
+    /**
+     * Sets the Home list to youngest to oldest dogs.
+     */
+    public void setHomeList() {
+        this.homeList = planner.filter(false, null, false, null, false, null, false, null, false, null, false, null, "age", true).toList();
+    }
+
+    /**
+     * Returns the Home list of dogs.
+     * 
+     * @return the home list of dogs.
+     */
+    public List<Dog> getHomeList() {
+        return this.homeList;
     }
 
     /**
@@ -201,7 +216,6 @@ public class ACController {
      *
      * @return a List of Dog objects representing the wish list.
      */
-    @GetMapping("/wishlist")
     public List<Dog> getWishList() {
         return this.wishList;
     }
@@ -212,7 +226,6 @@ public class ACController {
      * @param dog the Dog object to be added to the wish list.
      * @return a String message indicating whether the dog was added or already exists in the wish list.
      */
-    @PostMapping("/wishlist")
     public String addToWishList(Dog dog) {
         boolean alreadyExists = wishList.stream().anyMatch(wishDog -> wishDog.getID().equals(dog.getID()));
         if (!alreadyExists) {
@@ -246,8 +259,7 @@ public class ACController {
      * @param id the id of the dog
      * @return dog object from the search.
      */
-    @GetMapping
-    public Dog getDog(@RequestParam String id) {
+    public Dog getDog(String id) {
         return this.model.getDogById(id);
     }
 }
