@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.Breed;
+import model.Dog;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DogTest {

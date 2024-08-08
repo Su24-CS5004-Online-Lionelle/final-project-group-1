@@ -2,6 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.ACFilterPlanner;
+import model.Breed;
+import model.Dog;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

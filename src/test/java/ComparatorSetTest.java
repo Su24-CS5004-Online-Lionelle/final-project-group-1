@@ -1,4 +1,10 @@
 import org.junit.jupiter.api.Test;
+
+import model.AdoptionCenterModel;
+import model.Breed;
+import model.ComparatorSet;
+import model.Dog;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Comparator;
