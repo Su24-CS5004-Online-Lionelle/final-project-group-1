@@ -67,7 +67,9 @@ public class ACController {
      * Sets the Home list to youngest to oldest dogs.
      */
     public void setHomeList() {
-        this.homeList = planner.filter(false, null, false, null, false, null, false, null, false, null, false, null, "age", true).toList();
+        this.homeList = planner.filter(false, null,
+        false, null, false, null, false,
+        null, false, null, false, null, "age", true).toList();
     }
 
     /**
