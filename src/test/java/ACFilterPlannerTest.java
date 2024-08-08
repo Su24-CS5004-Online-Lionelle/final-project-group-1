@@ -26,12 +26,20 @@ public class ACFilterPlannerTest {
         planner = new ACFilterPlanner(List.of(dog1, dog2, dog3));
     }
 
+    /**
+     * Tests the constructor of ACFilterPlanner.
+     * Verifies that the planner is not null and contains the correct number of dogs.
+     */
     @Test
     public void testConstructor() {
         assertNotNull(planner);
         assertEquals(3, planner.filter(false, "", false, "", false, "", false, "", false, "", false, "", "", true).count());
     }
 
+    /**
+     * Tests filtering dogs by name.
+     * Verifies that only the dog with the specified name is returned.
+     */
     @Test
     public void testFilterByName() {
         Stream<Dog> result = planner.filter(true, "Dog1", false, "", false, "", false, "", false, "", false, "", "", true);
@@ -41,6 +49,10 @@ public class ACFilterPlannerTest {
         assertEquals(dog1, filteredDogs.get(0));
     }
 
+    /**
+     * Tests filtering dogs by sex.
+     * Verifies that only dogs of the specified sex are returned.
+     */
     @Test
     public void testFilterBySex() {
         Stream<Dog> result = planner.filter(false, "", true, "f", false, "", false, "", false, "", false, "", "", true);
@@ -51,6 +63,10 @@ public class ACFilterPlannerTest {
         assertEquals(dog2, filteredDogs.get(1));
     }
 
+    /**
+     * Tests filtering dogs by breed.
+     * Verifies that all dogs of the specified breed are returned.
+     */
     @Test
     public void testFilterByBreed() {
         Stream<Dog> result = planner.filter(false, "", false, "", true, "New Breed", false, "", false, "", false, "", "", true);
@@ -62,6 +78,10 @@ public class ACFilterPlannerTest {
         assertTrue(filteredDogs.contains(dog3));
     }
 
+    /**
+     * Tests sorting dogs by name in ascending order.
+     * Verifies that dogs are correctly sorted alphabetically by name.
+     */
     @Test
     public void testSortByNameAscending() {
         Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, "", false, "", false, "", "name", true);
@@ -73,6 +93,10 @@ public class ACFilterPlannerTest {
         assertEquals(dog3, sortedDogs.get(2));
     }
 
+    /**
+     * Tests sorting dogs by age in descending order.
+     * Verifies that dogs are correctly sorted from oldest to youngest.
+     */
     @Test
     public void testSortByAgeDescending() {
         Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, "", false, "", false, "", "age", false);
@@ -84,11 +108,19 @@ public class ACFilterPlannerTest {
         assertEquals(dog1, sortedDogs.get(2));
     }
 
+    /**
+     * Tests applying a filter with a null value.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testApplyFilterWithNullValue() {
         assertThrows(IllegalArgumentException.class, () -> planner.applyFilter(true, "name", null));
     }
 
+    /**
+     * Tests applying a filter with an empty string.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testApplyFilterWithEmptyString() {
         assertThrows(IllegalArgumentException.class, () -> planner.applyFilter(true, "name", ""));
