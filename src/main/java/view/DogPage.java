@@ -80,7 +80,6 @@ public class DogPage extends JPanel {
         gbc.gridy++;
         add(readyLabel, gbc);
         
-        // Add breed details
         gbc.gridy++;
         gbc.anchor = GridBagConstraints.WEST;
         add(breedNameLabel, gbc);
