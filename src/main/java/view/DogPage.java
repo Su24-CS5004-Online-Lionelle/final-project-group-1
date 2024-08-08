@@ -39,7 +39,7 @@ public class DogPage extends JPanel {
         imageLabel = new JLabel();
         priceLabel = new JLabel("Price: ");
         readyLabel = new JLabel("Ready for Adoption: ");
-        breedNameLabel = new JLabel("Breed Name: ");
+        breedNameLabel = new JLabel("Breed: ");
         breedDescriptionLabel = new JLabel("Description: ");
         breedLifeMinLabel = new JLabel("Life Expectancy Min: ");
         breedLifeMaxLabel = new JLabel("Life Expectancy Max: ");
@@ -105,7 +105,7 @@ public class DogPage extends JPanel {
         weightLabel.setText("Weight: " + dog.getWeight() + " pounds");
         priceLabel.setText("Price: $" + dog.getPrice());
         readyLabel.setText("Ready for Adoption: " + (dog.getIsReady() ? "Yes" : "No"));
-        breedNameLabel.setText("Breed Name: " + breed.name());
+        breedNameLabel.setText("Breed: " + breed.name());
         breedDescriptionLabel.setText("Description: " + breed.description());
         breedLifeMinLabel.setText("Life Expectancy Min: " + breed.lifeMin() + " years");
         breedLifeMaxLabel.setText("Life Expectancy Max: " + breed.lifeMax() + " years");
