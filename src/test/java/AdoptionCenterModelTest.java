@@ -24,6 +24,10 @@ public class AdoptionCenterModelTest {
         dog3 = new Dog("3", "Dog3", "m", breed, 4, 55, "3.png");
     }
 
+    /**
+     * Tests adding dogs to the adoption center model.
+     * Verifies that dogs are correctly added and retrievable.
+     */
     @Test
     public void testAddDog() {
         model.addDog(dog1);
@@ -34,11 +38,19 @@ public class AdoptionCenterModelTest {
         assertTrue(dogs.contains(dog3));
     }
 
+    /**
+     * Tests adding a null dog to the adoption center model.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testAddDogNull() {
         assertThrows(IllegalArgumentException.class, () -> model.addDog(null));
     }
 
+    /**
+     * Tests removing a dog from the adoption center model.
+     * Verifies that the dog is correctly removed and no longer retrievable.
+     */
     @Test
     public void testRemoveDog() {
         model.addDog(dog1);
@@ -50,6 +62,10 @@ public class AdoptionCenterModelTest {
         assertFalse(dogs.contains(dog1));
     }
 
+    /**
+     * Tests removing a non-existent dog from the adoption center model.
+     * Verifies that the operation doesn't affect existing dogs.
+     */
     @Test
     public void testRemoveDogNonExist() {
         model.addDog(dog1);
@@ -60,6 +76,10 @@ public class AdoptionCenterModelTest {
         assertEquals(3, dogs.size());
     }
 
+    /**
+     * Tests retrieving all dogs from the adoption center model.
+     * Verifies that all added dogs are correctly returned.
+     */
     @Test
     public void testGetAllDogs() {
         model.addDog(dog1);
@@ -72,6 +92,10 @@ public class AdoptionCenterModelTest {
         assertTrue(dogs.contains(dog3));
     }
 
+    /**
+     * Tests retrieving a dog by its ID.
+     * Verifies that the correct dog is returned for a given ID.
+     */
     @Test
     public void testGetDogById() {
         model.addDog(dog1);
@@ -80,6 +104,10 @@ public class AdoptionCenterModelTest {
         assertEquals(dog1.getID(), foundDog.getID());
     }
 
+    /**
+     * Tests retrieving a non-existent dog by ID.
+     * Verifies that null is returned for an ID that doesn't exist.
+     */
     @Test
     public void testGetDogByIdNonExist() {
         model.addDog(dog1);
@@ -89,6 +117,10 @@ public class AdoptionCenterModelTest {
         assertNull(foundDog);
     }
 
+    /**
+     * Tests changing a dog's age.
+     * Verifies that the dog's age is correctly updated.
+     */
     @Test
     public void testChangeDogAge() {
         model.addDog(dog1);
@@ -98,6 +130,10 @@ public class AdoptionCenterModelTest {
         assertEquals(newAge, updatedDog.getAge());
     }
 
+    /**
+     * Tests changing a dog's age to an invalid value.
+     * Verifies that an IllegalArgumentException is thrown for a negative age.
+     */
     @Test
     public void testChangeDogAgeInvalid() {
         model.addDog(dog1);
@@ -105,6 +141,10 @@ public class AdoptionCenterModelTest {
         assertThrows(IllegalArgumentException.class, () -> model.changeDogAge(dog1.getID(), invalidAge));
     }
 
+    /**
+     * Tests changing the age of a non-existent dog.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testChangeDogAgeNonExist() {
         model.addDog(dog1);
@@ -113,6 +153,10 @@ public class AdoptionCenterModelTest {
         assertThrows(IllegalArgumentException.class, () -> model.changeDogAge("4", 3));
     }
 
+    /**
+     * Tests changing a dog's price.
+     * Verifies that the dog's price is correctly updated.
+     */
     @Test
     public void testChangeDogPrice() {
         model.addDog(dog1);
@@ -122,6 +166,10 @@ public class AdoptionCenterModelTest {
         assertEquals(newPrice, updatedDog.getPrice());
     }
 
+    /**
+     * Tests changing a dog's price to an invalid value.
+     * Verifies that an IllegalArgumentException is thrown for a negative price.
+     */
     @Test
     public void testChangeDogPriceInvalid() {
         model.addDog(dog1);
@@ -129,6 +177,10 @@ public class AdoptionCenterModelTest {
         assertThrows(IllegalArgumentException.class, () -> model.changeDogPrice(dog1.getID(), invalidPrice));
     }
 
+    /**
+     * Tests changing the price of a non-existent dog.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testChangeDogPriceNonExist() {
         model.addDog(dog1);
@@ -137,6 +189,10 @@ public class AdoptionCenterModelTest {
         assertThrows(IllegalArgumentException.class, () -> model.changeDogPrice("4", 5.0));
     }
 
+    /**
+     * Tests marking a dog as ready for adoption.
+     * Verifies that the dog's ready status is correctly updated.
+     */
     @Test
     public void testMarkDogReadyForAdoption() {
         model.addDog(dog1);
@@ -147,12 +203,20 @@ public class AdoptionCenterModelTest {
         assertTrue(updatedDog.getIsReady());
     }
 
+    /**
+     * Tests marking a dog as ready for adoption without setting a price.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testMarkDogReadyForAdoptionNoPrice() {
         model.addDog(dog1);
         assertThrows(IllegalArgumentException.class, () -> model.markDogReadyForAdoption(dog1.getID(), true));
     }
 
+    /**
+     * Tests marking a non-existent dog as ready for adoption.
+     * Verifies that an IllegalArgumentException is thrown.
+     */
     @Test
     public void testMarkDogReadyForAdoptionNonExist() {
         model.addDog(dog1);
@@ -161,6 +225,10 @@ public class AdoptionCenterModelTest {
         assertThrows(IllegalArgumentException.class, () -> model.markDogReadyForAdoption("4", true));
     }
 
+    /**
+     * Tests retrieving adoptable dogs.
+     * Verifies that only dogs marked as ready and with a set price are returned.
+     */
     @Test
     public void testGetAdoptableDogs() {
         model.addDog(dog1);
