@@ -76,29 +76,49 @@ class ACFilterPlanner {
 	+applyFilter(filterOn: boolean, field: String, value: Object): void
 }
 class ACController {
--model: AdoptionCenterModel
--resultList: List~Dog~
--planner: ACFilterPlanner
--nameOn: boolean
--nameFilter: String
--sexOn: boolean
--sexFilter: String
--breedOn: boolean
--breedFilter: String
--ageOn: boolean
--ageFilter: String
--weightOn: boolean
--weightFilter: String
--priceOn: boolean
--priceFilter: String
--sortOn: String
--ascending: boolean
--wishList: List~Dog~
--homeList: List~Dog~
-+ACController(model: AdoptionCenterModel)
-+setHomeList(): void
-+getHomeList(): List~Dog~
-+setNameSearch(name: String): void
+    -model: AdoptionCenterModel
+    -resultList: List~Dog~
+    -planner: ACFilterPlanner
+    -nameOn: boolean
+    -nameFilter: String
+    -sexOn: boolean
+    -sexFilter: String
+    -breedOn: boolean
+    -breedFilter: String
+    -ageOn: boolean
+    -ageFilter: String
+    -weightOn: boolean
+    -weightFilter: String
+    -priceOn: boolean
+    -priceFilter: String
+    -sortOn: String
+    -ascending: boolean
+    -wishList: List~Dog~
+    -homeList: List~Dog~
+    +ACController(model: AdoptionCenterModel)
+    +setHomeList(): void
+    +getHomeList(): List~Dog~
+    +setNameSearch(name: String): void
+    +setSexSearch(sex: String): void
+    +setBreedSearch(breed: String): void
+    +setAgeSearch(age: String): void
+    +setWeightSearch(weight: String): void
+    +setPriceSearch(price: String): void
+    +clearSearchFilters(): void
+    +setResultList(): void
+    +getResultList(): List~Dog~
+    +getWishListToJsonFormat(): String
+    +saveList(filename: String): void
+    +getWishList(): List~Dog~
+    +addToWishList(dog: Dog): String
+    +removeFromWishList(id: String): String
+    +getDog(id: String): Dog
 }
-
+Breed --> ApiUtil
+Dog --> Breed
+AdoptionCenterModel --> Dog
+ACFilterPlanner --> ComparatorSet
+ACController --> AdoptionCenterModel
+ACController --> ACFilterPlanner
+ACController --> Dog
 ```
