@@ -110,7 +110,7 @@ public class MainPage extends JFrame {
         breedButtonsPanel.setBorder(BorderFactory.createTitledBorder("Dog Breeds"));
 
         // Get up to 9 distinct breeds from adoptable dogs
-        List<Breed> breeds = controller.getModel().getAdoptableDogs().stream()
+        List<Breed> breeds = controller.getAdoptableDogs().stream()
                 .map(Dog::getBreed)
                 .distinct()
                 .limit(9)

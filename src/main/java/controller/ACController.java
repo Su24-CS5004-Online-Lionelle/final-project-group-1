@@ -269,4 +269,13 @@ public class ACController {
     public Dog getDog(String id) {
         return this.model.getDogById(id);
     }
+
+    /**
+     * Gets the list of adoptable dogs.
+     * 
+     * @return the list of adoptable dogs.
+     */
+    public List<Dog> getAdoptableDogs() {
+        return this.model.getAdoptableDogs();
+    }
 }
