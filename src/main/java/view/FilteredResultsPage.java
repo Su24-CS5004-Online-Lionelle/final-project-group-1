@@ -1,5 +1,7 @@
 package view;
 
+import controller.ACController;
+import model.AdoptionCenterModel;
 import model.Dog;
 
 import javax.swing.*;
@@ -36,14 +38,14 @@ public class FilteredResultsPage extends JFrame {
         });
         topPanel.add(sortComboBox);
 
-        JButton homeButton = new JButton("Home");
-        topPanel.add(homeButton);
+        JButton homeButton = new JButton("Return to Home");
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((CardLayout) getParent().getLayout()).show(getParent(), "HomePage");
+                returnToHomePage();
             }
         });
+        topPanel.add(homeButton);
 
         resultsPanel = new JPanel();
         resultsPanel.setLayout(new BoxLayout(resultsPanel, BoxLayout.Y_AXIS));
@@ -119,6 +121,15 @@ public class FilteredResultsPage extends JFrame {
         }
 
         displayDogs();
+    }
+
+    private void returnToHomePage() {
+        this.dispose();
+        AdoptionCenterModel model = new AdoptionCenterModel();
+        ACController controller = new ACController(model);
+        MainPage mainPage = new MainPage(controller);
+        mainPage.setVisible(true);
+
     }
 
     private void viewDog(Dog dog) {
