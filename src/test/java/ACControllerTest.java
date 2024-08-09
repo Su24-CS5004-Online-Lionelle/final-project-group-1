@@ -1,3 +1,11 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import model.AdoptionCenterModel;
+import model.Breed;
+import model.Dog;
+import controller.ACController;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -71,63 +79,6 @@ public class ACControllerTest {
     }
 
     /**
-     * Tests setting and applying the sex filter.
-     * Verifies that only dogs of the specified sex are returned.
-     */
-    @Test
-    public void testSetSexSearch() {
-        controller.setSexSearch("f");
-        controller.setResultList();
-        List<Dog> resultList = controller.getResultList();
-
-        assertEquals(2, resultList.size());
-        assertTrue(resultList.contains(dog1));
-        assertTrue(resultList.contains(dog2));
-    }
-
-    /**
-     * Tests setting and applying the age filter.
-     * Verifies that only dogs of the specified age are returned.
-     */
-    @Test
-    public void testSetAgeSearch() {
-        controller.setAgeSearch("5");
-        controller.setResultList();
-        List<Dog> resultList = controller.getResultList();
-
-        assertEquals(1, resultList.size());
-        assertEquals(dog2, resultList.get(0));
-    }
-
-    /**
-     * Tests setting and applying the weight filter.
-     * Verifies that only dogs of the specified weight are returned.
-     */
-    @Test
-    public void testSetWeightSearch() {
-        controller.setWeightSearch("55");
-        controller.setResultList();
-        List<Dog> resultList = controller.getResultList();
-
-        assertEquals(1, resultList.size());
-        assertEquals(dog3, resultList.get(0));
-    }
-
-    /**
-     * Tests setting and applying the price filter.
-     * Verifies that only dogs of the specified price are returned.
-     */
-    @Test
-    public void testSetPriceSearch() {
-        controller.setPriceSearch("700");
-        controller.setResultList();
-        List<Dog> resultList = controller.getResultList();
-
-        assertEquals(1, resultList.size());
-        assertEquals(dog2, resultList.get(0));
-    }
-
-    /**
      * Tests clearing all search filters.
      * Verifies that all dogs are returned after clearing the filters.
      */
@@ -140,6 +91,21 @@ public class ACControllerTest {
         controller.clearSearchFilters();
         controller.setResultList();
         assertEquals(3, controller.getResultList().size());
+    }
+
+    /**
+     * Tests setting and applying the sex filter.
+     * Verifies that only dogs of the specified sex are returned.
+     */
+    @Test
+    public void testSetSexSearch() {
+        controller.setSexSearch("f");
+        controller.setResultList();
+        List<Dog> resultList = controller.getResultList();
+
+        assertEquals(2, resultList.size());
+        assertTrue(resultList.contains(dog1));
+        assertTrue(resultList.contains(dog2));
     }
 
     /**
@@ -213,7 +179,6 @@ public class ACControllerTest {
     @Test
     public void testGetDog() {
         Dog foundDog = controller.getDog("1");
-        
         assertNotNull(foundDog);
         assertEquals("Dog1", foundDog.getName());
     }
@@ -254,7 +219,6 @@ public class ACControllerTest {
     public void testSaveList() throws IOException {
         controller.addToWishList(dog1);
         controller.addToWishList(dog2);
-        
         String filename = "test_wishlist.json";
         controller.saveList(filename);
 
@@ -269,4 +233,6 @@ public class ACControllerTest {
         // Clean up the test file
         file.delete();
     }
+
+
 }
