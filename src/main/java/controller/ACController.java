@@ -116,8 +116,8 @@ public class ACController {
      * @param age The age to search for.
      */
     public void setAgeSearch(String age) {
-        this.ageSearch = age;
         this.ageOn = true;
+        this.ageSearch = age;
     }
 
     /**
@@ -126,8 +126,8 @@ public class ACController {
      * @param weight The weight to search for.
      */
     public void setWeightSearch(String weight) {
-        this.weightSearch = weight;
-        this.weightOn = true; 
+        this.weightOn = true;
+        this.weightSearch = weight; 
     }
 
     /**
@@ -136,8 +136,8 @@ public class ACController {
      * @param price The price to search for.
      */
     public void setPriceSearch(String price) {
-        this.priceSearch = price;
         this.priceOn = true;
+        this.priceSearch = price;
     }
 
     /**
@@ -276,20 +276,5 @@ public class ACController {
      */
     public List<Dog> getAdoptableDogs() {
         return this.model.getAdoptableDogs();
-    }
-
-    /**
-     * Sets the sort field.
-     * 
-     * @param sortOn the String of the field to sort on.
-     */
-    public void setSortOn(String sortOn, boolean ascending) {
-        if (!(sortOn == "age" || sortOn == "weight" || sortOn == "breed" || sortOn == "name" || sortOn == "price" || sortOn == "sex")) {
-            this.sortOn = "age";
-            this.ascending = ascending;
-        } else {
-            this.sortOn = sortOn;
-            this.ascending = ascending;
-        }
     }
 }
