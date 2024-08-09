@@ -295,11 +295,13 @@ public class ACController {
      * 
      * @param sortOn the String of the field to sort on.
      */
-    public void setSortOn(String sortOn) {
+    public void setSortOn(String sortOn, boolean ascending) {
         if (!(sortOn == "age" || sortOn == "weight" || sortOn == "breed" || sortOn == "name" || sortOn == "price" || sortOn == "sex")) {
             this.sortOn = "age";
+            this.ascending = ascending;
         } else {
             this.sortOn = sortOn;
+            this.ascending = ascending;
         }
     }
 }
