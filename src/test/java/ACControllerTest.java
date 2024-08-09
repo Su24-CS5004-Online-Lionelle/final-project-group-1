@@ -16,6 +16,11 @@ public class ACControllerTest {
     private Dog dog2;
     private Dog dog3;
 
+    /**
+     * Sets up the testing environment before each test.
+     * Creates a new AdoptionCenterModel, breeds, dogs,
+     * and initializes the ACController with the model.
+     */
     @BeforeEach
     public void setUp() {
         AdoptionCenterModel model = new AdoptionCenterModel();
@@ -34,6 +39,10 @@ public class ACControllerTest {
         controller = new ACController(model);
     }
 
+    /**
+     * Tests the setNameSearch method by searching for a dog by name.
+     * Verifies that the correct dog is returned in the search results.
+     */
     @Test
     public void testSetNameSearch() {
         controller.setNameSearch("Max");
@@ -44,6 +53,10 @@ public class ACControllerTest {
         assertEquals(dog1, results.get(0));
     }
 
+    /**
+     * Tests the setSexSearch method by searching for dogs by sex.
+     * Verifies that the correct dogs are returned in the search results.
+     */
     @Test
     public void testSetSexSearch() {
         controller.setSexSearch("M");
@@ -55,6 +68,10 @@ public class ACControllerTest {
         assertTrue(results.contains(dog3));
     }
 
+    /**
+     * Tests the setBreedSearch method by searching for dogs by breed.
+     * Verifies that the correct dogs are returned in the search results.
+     */
     @Test
     public void testSetBreedSearch() {
         controller.setBreedSearch("Labrador Retriever");
@@ -66,6 +83,10 @@ public class ACControllerTest {
         assertTrue(results.contains(dog3));
     }
 
+    /**
+     * Tests the clearSearchFilters method by applying filters, clearing them,
+     * and checking that all dogs are returned.
+     */
     @Test
     public void testClearSearchFilters() {
         controller.setNameSearch("Max");
@@ -77,6 +98,10 @@ public class ACControllerTest {
         assertEquals(3, results.size());
     }
 
+    /**
+     * Tests the addToWishList method by adding a dog to the wishlist.
+     * Verifies that the dog is added and the correct message is returned.
+     */
     @Test
     public void testAddToWishList() {
         String result = controller.addToWishList(dog1);
@@ -87,6 +112,10 @@ public class ACControllerTest {
         assertEquals("Max has been added to your wishlist.", result);
     }
 
+    /**
+     * Tests the addToWishList method by attempting to add a duplicate dog.
+     * Verifies that the wishlist size remains the same and the correct message is returned.
+     */
     @Test
     public void testAddToWishListDuplicate() {
         controller.addToWishList(dog1);
@@ -97,6 +126,10 @@ public class ACControllerTest {
         assertEquals("Max is already in your wishlist.", result);
     }
 
+    /**
+     * Tests the removeFromWishList method by removing a dog from the wishlist.
+     * Verifies that the dog is removed and the correct message is returned.
+     */
     @Test
     public void testRemoveFromWishList() {
         controller.addToWishList(dog1);
@@ -107,12 +140,20 @@ public class ACControllerTest {
         assertEquals("Max was removed from wish list.", result);
     }
 
+    /**
+     * Tests the removeFromWishList method by attempting to remove a dog not in the wishlist.
+     * Verifies that the correct message is returned.
+     */
     @Test
     public void testRemoveFromWishListNotFound() {
         String result = controller.removeFromWishList("999");
         assertEquals("999 could not be found in the wish list.", result);
     }
 
+    /**
+     * Tests the setHomeList method to ensure dogs are sorted by age in ascending order.
+     * Verifies the order of dogs in the home list.
+     */
     @Test
     public void testSortByAgeAscending() {
         controller.setHomeList();
@@ -124,12 +165,20 @@ public class ACControllerTest {
         assertEquals(dog2, homeList.get(2)); // Oldest dog should be last
     }
 
+    /**
+     * Tests the getDog method by retrieving a dog by its ID.
+     * Verifies that the correct dog is returned.
+     */
     @Test
     public void testGetDog() {
         Dog result = controller.getDog(dog2.getID());
         assertEquals(dog2, result);
     }
 
+    /**
+     * Tests the getAdoptableDogs method to ensure all adoptable dogs are returned.
+     * Verifies that the list contains the correct dogs.
+     */
     @Test
     public void testGetAdoptableDogs() {
         List<Dog> adoptableDogs = controller.getAdoptableDogs();
@@ -139,6 +188,10 @@ public class ACControllerTest {
         assertTrue(adoptableDogs.contains(dog3));
     }
 
+    /**
+     * Tests the getWishListToJsonFormat method by adding dogs to the wishlist and checking JSON format.
+     * Verifies that the JSON contains the correct dog information.
+     */
     @Test
     public void testGetWishListToJsonFormat() {
         controller.addToWishList(dog1);
@@ -149,6 +202,10 @@ public class ACControllerTest {
         assertTrue(json.contains("\"name\":\"Bella\""));
     }
 
+    /**
+     * Tests the saveList method by saving the wishlist to a file.
+     * Verifies that the file is created and then deletes it after the test.
+     */
     @Test
     public void testSaveList() {
         controller.addToWishList(dog1);
