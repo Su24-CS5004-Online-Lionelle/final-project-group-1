@@ -12,15 +12,28 @@ The main window is divided into three sections:
 2. Results Panel (center)
 3. Wishlist Panel (bottom)
 
+![image info](ManualScreenshots/AddToWishlist.png)
+
 1. Search Panel
 
 The search panel allows you to filter dogs based on various criteria:
 
 - Name: Enter a dog's name or part of a name.
 - Sex: Choose from "Any", "Male", or "Female".
+![image info](ManualScreenshots/AllMale.png)
+![image info](ManualScreenshots/AllFemale.png)
+
 - Breed: Select a specific breed or "Any".
+![image info](ManualScreenshots/SpecificDogBreed.png)
+
 - Sort By: Choose how to sort the results (Name, Age, Weight, or Price).
+![image info](ManualScreenshots/SortbyAge.png)
+![image info](ManualScreenshots/SortbyPrice.png)
+![image info](ManualScreenshots/SortbyWeight.png)
+
 - Search Button: Click to perform the search based on your criteria.
+![image info](ManualScreenshots/SearchbyName.png)
+
 - Clear Button: Click to reset all search fields and display all dogs.
 
 2. Results Panel
@@ -53,10 +66,15 @@ How to Use the Program
     - To add a dog to your wishlist, click the "Add to Wishlist" button on the dog's panel.
     - To remove a dog from your wishlist, click the "Remove from Wishlist" button.
     - To view your entire wishlist, click the "Show Wishlist" button at the bottom of the window.
+  ![image info](ManualScreenshots/DogsOnWishList.png)
+  ![image info](ManualScreenshots/WishList.png)
 
 4. Saving the Wishlist:
     - In the wishlist dialog, click the "Save Wishlist" button.
     - Choose a location and filename to save your wishlist as a JSON file.
+  ![image info](ManualScreenshots/SaveWishListAs.png)
+  ![image info](ManualScreenshots/SaveSucessful.png)
+  ![image info](ManualScreenshots/DogTestJsonFile.png)
 
 5. Clearing Search Results:
     - Click the "Clear" button in the search panel to reset all filters and display all dogs.
