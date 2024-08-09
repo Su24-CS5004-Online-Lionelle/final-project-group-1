@@ -18,12 +18,14 @@ public class FilteredResultsPage extends JFrame {
     private JPanel resultsPanel;
     private JComboBox<String> sortComboBox;
     private Map<String, Comparator<Dog>> sortOptions;
+    private ACController controller;
 
-    public FilteredResultsPage(List<Dog> dogs) {
+    public FilteredResultsPage(List<Dog> dogs, ACController controller) {
         this.dogs = dogs;
+        this.controller = controller;
         setTitle("Filtered Results");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         initializeSortOptions();
@@ -125,22 +127,18 @@ public class FilteredResultsPage extends JFrame {
 
     private void returnToHomePage() {
         this.dispose();
-        AdoptionCenterModel model = new AdoptionCenterModel();
-        ACController controller = new ACController(model);
         MainPage mainPage = new MainPage(controller);
         mainPage.setVisible(true);
 
     }
 
     private void viewDog(Dog dog) {
-        this.dispose();
-        DogPage dogPage = new DogPage();
+        DogPage dogPage = new DogPage(dog, controller);
         dogPage.setVisible(true);
     }
 
     private void addToWishlist(Dog dog) {
-        this.dispose();
-        WishlistPage wishlistPage = new WishlistPage();
+        WishlistPage wishlistPage = new WishlistPage(dog);
         wishlistPage.setVisible(true);
 
     }
