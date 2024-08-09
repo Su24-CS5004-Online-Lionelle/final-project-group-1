@@ -127,7 +127,7 @@ public class ACController {
      */
     public void setWeightSearch(String weight) {
         this.weightOn = true;
-        this.weightSearch = weight; 
+        this.weightSearch = weight;
     }
 
     /**
