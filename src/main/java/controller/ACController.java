@@ -111,36 +111,6 @@ public class ACController {
     }
 
     /**
-     * Sets the age search filter.
-     *
-     * @param age The age to search for.
-     */
-    public void setAgeSearch(String age) {
-        this.ageOn = true;
-        this.ageSearch = age;
-    }
-
-    /**
-     * Sets the weight search filter.
-     *
-     * @param weight The weight to search for.
-     */
-    public void setWeightSearch(String weight) {
-        this.weightOn = true;
-        this.weightSearch = weight;
-    }
-
-    /**
-     * Sets the price search filter.
-     *
-     * @param price The price to search for.
-     */
-    public void setPriceSearch(String price) {
-        this.priceOn = true;
-        this.priceSearch = price;
-    }
-
-    /**
      * Clears all search filters.
      */
     public void clearSearchFilters() {
