@@ -289,4 +289,17 @@ public class ACController {
     public List<Dog> getAdoptableDogs() {
         return this.model.getAdoptableDogs();
     }
+
+    /**
+     * Sets the sort field.
+     * 
+     * @param sortOn the String of the field to sort on.
+     */
+    public void setSortOn(String sortOn) {
+        if (!(sortOn == "age" || sortOn == "weight" || sortOn == "breed" || sortOn == "name" || sortOn == "price" || sortOn == "sex")) {
+            this.sortOn = "age";
+        } else {
+            this.sortOn = sortOn;
+        }
+    }
 }
