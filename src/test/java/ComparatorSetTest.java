@@ -28,6 +28,10 @@ public class ComparatorSetTest {
         dog3 = new Dog("3", "Dog3", "m", breed, 4, 55, "3.png");
     }
 
+    /**
+     * Tests the name comparator retrieval and functionality.
+     * Verifies that the comparator correctly orders dogs by name.
+     */
     @Test
     public void testGetComparatorName() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("name");
@@ -35,6 +39,10 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog2) < 0);
     }
 
+    /**
+     * Tests the sex comparator retrieval and functionality.
+     * Verifies that the comparator correctly orders dogs by sex.
+     */
     @Test
     public void testGetComparatorSex() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("sex");
@@ -42,6 +50,10 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog3) < 0);
     }
 
+    /**
+     * Tests the breed comparator retrieval and functionality.
+     * Verifies that the comparator correctly compares dogs by breed.
+     */
     @Test
     public void testGetComparatorBreed() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("breed");
@@ -49,6 +61,10 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog2) == 0);
     }
 
+    /**
+     * Tests the age comparator retrieval and functionality.
+     * Verifies that the comparator correctly orders dogs by age.
+     */
     @Test
     public void testGetComparatorAge() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("age");
@@ -56,6 +72,10 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog2) < 0);
     }
 
+    /**
+     * Tests the weight comparator retrieval and functionality.
+     * Verifies that the comparator correctly orders dogs by weight.
+     */
     @Test
     public void testGetComparatorWeight() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("weight");
@@ -63,6 +83,10 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog2) < 0);
     }
 
+    /**
+     * Tests the price comparator retrieval and functionality.
+     * Verifies that the comparator correctly orders dogs by price.
+     */
     @Test
     public void testGetComparatorPrice() {
         model.addDog(dog1);
@@ -74,12 +98,20 @@ public class ComparatorSetTest {
         assertTrue(comparator.compare(dog1, dog2) < 0);
     }
 
+    /**
+     * Tests the retrieval of an invalid comparator.
+     * Verifies that null is returned for an invalid comparator type.
+     */
     @Test
     public void testGetComparatorInvalid() {
         Comparator<Dog> comparator = ComparatorSet.getComparator("invalid");
         assertNull(comparator);
     }
 
+    /**
+     * Tests the name predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by name.
+     */
     @Test
     public void testGetPredicateName() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("name", "Dog1");
@@ -87,6 +119,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the sex predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by sex.
+     */
     @Test
     public void testGetPredicateSex() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("sex", "f");
@@ -94,6 +130,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the breed predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by breed.
+     */
     @Test
     public void testGetPredicateBreed() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("breed", "New Breed");
@@ -101,6 +141,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the age predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by age.
+     */
     @Test
     public void testGetPredicateAge() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("age", 2);
@@ -108,6 +152,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the weight predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by weight.
+     */
     @Test
     public void testGetPredicateWeight() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("weight", 45.0);
@@ -115,6 +163,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the price predicate retrieval and functionality.
+     * Verifies that the predicate correctly filters dogs by price.
+     */
     @Test
     public void testGetPredicatePrice() {
         model.addDog(dog1);
@@ -124,6 +176,10 @@ public class ComparatorSetTest {
         assertTrue(predicate.test(dog1));
     }
 
+    /**
+     * Tests the retrieval of an invalid predicate.
+     * Verifies that null is returned for an invalid predicate type.
+     */
     @Test
     public void testGetPredicateInvalid() {
         Predicate<Dog> predicate = ComparatorSet.getPredicate("invalid", "value");
