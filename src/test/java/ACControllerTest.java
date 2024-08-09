@@ -1,13 +1,8 @@
-import controller.ACController;
-import model.AdoptionCenterModel;
-import model.Breed;
-import model.Dog;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ACControllerTest {
 
@@ -154,5 +149,77 @@ public class ACControllerTest {
         assertEquals(dog2, homeList.get(2)); // Oldest dog
     }
 
-    
+    /**
+     * Tests the getDog method.
+     * Verifies that the correct Dog object is returned based on the provided ID.
+     */
+    @Test
+    public void testGetDog() {
+        Dog foundDog = controller.getDog("1");
+        
+        assertNotNull(foundDog);
+        assertEquals("Dog1", foundDog.getName());
+    }
+
+    /**
+     * Tests the getAdoptableDogs method.
+     * Verifies that the method returns the correct list of adoptable dogs.
+     */
+    @Test
+    public void testGetAdoptableDogs() {
+        List<Dog> adoptableDogs = controller.getAdoptableDogs();
+
+        assertNotNull(adoptableDogs);
+        assertEquals(3, adoptableDogs.size());
+        assertTrue(adoptableDogs.contains(dog1));
+        assertTrue(adoptableDogs.contains(dog2));
+        assertTrue(adoptableDogs.contains(dog3));
+    }
+
+    /**
+     * Tests the getWishListToJsonFormat method.
+     * Verifies that the wishlist is correctly converted to JSON format.
+     */
+    @Test
+    public void testGetWishListToJsonFormat() {
+        controller.addToWishList(dog1);
+        String jsonOutput = controller.getWishListToJsonFormat();
+
+        assertTrue(jsonOutput.contains("\"name\":\"Dog1\""));
+        assertTrue(jsonOutput.contains("\"id\":\"1\""));
+    }
+
+    /**
+     * Tests the saveList method.
+     * Verifies that the wishlist is correctly saved to a JSON file.
+     */
+    @Test
+    public void testSaveList() throws IOException {
+        controller.addToWishList(dog1);
+        controller.addToWishList(dog2);
+        
+        String filename = "test_wishlist.json";
+        controller.saveList(filename);
+
+        File file = new File(filename);
+        assertTrue(file.exists());
+
+        // Read the file content and verify it matches the expected JSON format
+        String fileContent = new String(Files.readAllBytes(Paths.get(filename)));
+        assertTrue(fileContent.contains("\"name\":\"Dog1\""));
+        assertTrue(fileContent.contains("\"name\":\"Dog2\""));
+
+        // Clean up the test file
+        file.delete();
+    }
+
+    /**
+     * Tests setting an invalid filter.
+     * Verifies that applying a filter with a null or empty value throws an exception.
+     */
+    @Test
+    public void testApplyFilterWithInvalidValue() {
+        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(null));
+        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(""));
+    }
 }
