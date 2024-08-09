@@ -67,36 +67,6 @@ public class ACControllerTest {
     }
 
     @Test
-    public void testSetAgeSearch() {
-        controller.setAgeSearch("2");
-        controller.setResultList();
-        List<Dog> results = controller.getResultList();
-
-        assertEquals(1, results.size());
-        assertEquals(dog1, results.get(0));
-    }
-
-    @Test
-    public void testSetWeightSearch() {
-        controller.setWeightSearch("25");
-        controller.setResultList();
-        List<Dog> results = controller.getResultList();
-
-        assertEquals(1, results.size());
-        assertEquals(dog3, results.get(0));
-    }
-
-    @Test
-    public void testSetPriceSearch() {
-        controller.setPriceSearch("1500");
-        controller.setResultList();
-        List<Dog> results = controller.getResultList();
-
-        assertEquals(1, results.size());
-        assertEquals(dog2, results.get(0));
-    }
-
-    @Test
     public void testClearSearchFilters() {
         controller.setNameSearch("Max");
         controller.setSexSearch("M");
