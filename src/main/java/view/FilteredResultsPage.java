@@ -139,7 +139,7 @@ public class FilteredResultsPage extends JFrame {
 
     private void addToWishlist(Dog dog) {
         WishlistPage wishlistPage = new WishlistPage(dog);
-        wishlistPage.setVisible(true);
+        JOptionPane.showMessageDialog(this, message);
 
     }
 
