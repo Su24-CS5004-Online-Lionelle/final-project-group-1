@@ -254,7 +254,7 @@ public class ACController {
             if (id.equals(wishList.get(index).getID())) {
                 String name = wishList.get(index).getName();
                 this.wishList.remove(index);
-                return name + "was removed from wish list.";
+                return name + " was removed from wish list.";
             }
         }
         return id + " could not be found in the wish list.";
