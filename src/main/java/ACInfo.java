@@ -1,15 +1,26 @@
 import java.io.IOException;
 import java.util.Map;
 
+import javax.swing.SwingUtilities;
+
 import model.Dog;
+import view.MainPage;
 import model.ApiUtil;
 import model.AdoptionCenterModel;
 import model.Breed;
 import controller.ACController;
 
 public class ACInfo {
+    
+    /**
+     * The main method to start the application.
+     * Creates the model and controller, and launches the main page.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         AdoptionCenterModel model = new AdoptionCenterModel();
+        ACController controller = new ACController(model);
         ApiUtil util = new ApiUtil();
         Map<String, Breed> breeds;
         try {
@@ -77,6 +88,6 @@ public class ACInfo {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        new ACController(model);
+        SwingUtilities.invokeLater(() -> new MainPage(controller));
     }
 }
