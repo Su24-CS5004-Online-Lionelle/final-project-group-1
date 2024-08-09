@@ -76,7 +76,23 @@ public class MainPage extends JFrame {
         searchPanel.add(searchButton);
         searchPanel.add(advancedButton);
 
+        JButton wishlistButton = new JButton("View Wishlist");
+        wishlistButton.addActionListener(e -> openWishlistPage());
+        searchPanel.add(wishlistButton);
+
         mainPanel.add(searchPanel, BorderLayout.SOUTH);
+    }
+
+    private void openWishlistPage() {
+        this.setVisible(false);
+        WishlistPage wishlistPage = new WishlistPage(controller);
+        wishlistPage.setVisible(true);
+    }
+
+    private void openFilteredResultsPage(List<Dog> results) {
+        this.setVisible(false);
+        FilteredResultsPage resultsPage = new FilteredResultsPage(results, controller);
+        resultsPage.setVisible(true);
     }
 
     /**
