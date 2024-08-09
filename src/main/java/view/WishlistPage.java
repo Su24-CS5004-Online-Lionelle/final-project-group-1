@@ -1,5 +1,8 @@
 package view;
  
+import controller.ACController;
+import model.Dog;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
