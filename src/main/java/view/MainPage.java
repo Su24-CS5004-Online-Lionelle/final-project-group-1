@@ -268,16 +268,4 @@ public class MainPage extends JFrame {
         JOptionPane.showMessageDialog(this, resultString.toString(), "Search Results", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /**
-     * The main method to start the application.
-     * Creates the model and controller, and launches the main page.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public static void main(String[] args) {
-        AdoptionCenterModel model = new AdoptionCenterModel();
-        ACController controller = new ACController(model);
-        // Here you would typically load your dogs into the model
-        SwingUtilities.invokeLater(() -> new MainPage(controller));
-    }
 }

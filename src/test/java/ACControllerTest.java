@@ -1,7 +1,13 @@
-package controller;
-
 import java.io.File;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import controller.ACController;
+import model.Dog;
+import model.AdoptionCenterModel;
+import model.Breed;
 
 public class ACControllerTest {
 
