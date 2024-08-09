@@ -41,9 +41,9 @@ public class ACFilterPlanner {
     public Stream<Dog> filter(boolean nameOn, String nameFilter,
                               boolean sexOn, String sexFilter,
                               boolean breedOn, String breedFilter,
-                              boolean ageOn, int ageFilter,
-                              boolean weightOn, double weightFilter,
-                              boolean priceOn, double priceFilter,
+                              boolean ageOn, String ageFilter,
+                              boolean weightOn, String weightFilter,
+                              boolean priceOn, String priceFilter,
                               String sortOn, boolean ascending) {
 
         filtered = dogs.stream();

@@ -33,7 +33,7 @@ public class ACFilterPlannerTest {
     @Test
     public void testConstructor() {
         assertNotNull(planner);
-        assertEquals(3, planner.filter(false, "", false, "", false, "", false, 0, false, 0, false, 0, "", true).count());
+        assertEquals(3, planner.filter(false, "", false, "", false, "", false, null, false, null, false, null, "", true).count());
     }
 
     /**
@@ -42,7 +42,7 @@ public class ACFilterPlannerTest {
      */
     @Test
     public void testFilterByName() {
-        Stream<Dog> result = planner.filter(true, "Dog1", false, "", false, "", false, 0, false, 0, false, 0, "", true);
+        Stream<Dog> result = planner.filter(true, "Dog1", false, "", false, "", false, null, false, null, false, null, "", true);
         List<Dog> filteredDogs = result.collect(Collectors.toList());
 
         assertEquals(1, filteredDogs.size());
@@ -55,7 +55,7 @@ public class ACFilterPlannerTest {
      */
     @Test
     public void testFilterBySex() {
-        Stream<Dog> result = planner.filter(false, "", true, "f", false, "", false, 0, false, 0, false, 0, "", true);
+        Stream<Dog> result = planner.filter(false, "", true, "f", false, "", false, null, false, null, false, null, "", true);
         List<Dog> filteredDogs = result.collect(Collectors.toList());
 
         assertEquals(2, filteredDogs.size());
@@ -69,7 +69,7 @@ public class ACFilterPlannerTest {
      */
     @Test
     public void testFilterByBreed() {
-        Stream<Dog> result = planner.filter(false, "", false, "", true, "New Breed", false, 0, false, 0, false, 0, "", true);
+        Stream<Dog> result = planner.filter(false, "", false, "", true, "New Breed", false, null, false, null, false, null, "", true);
         List<Dog> filteredDogs = result.collect(Collectors.toList());
 
         assertEquals(3, filteredDogs.size());
@@ -84,7 +84,7 @@ public class ACFilterPlannerTest {
      */
     @Test
     public void testSortByNameAscending() {
-        Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, 0, false, 0, false, 0, "name", true);
+        Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, null, false, null, false, null, "name", true);
         List<Dog> sortedDogs = result.collect(Collectors.toList());
 
         assertEquals(3, sortedDogs.size());
@@ -99,7 +99,7 @@ public class ACFilterPlannerTest {
      */
     @Test
     public void testSortByAgeDescending() {
-        Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, 0, false, 0, false, 0, "age", false);
+        Stream<Dog> result = planner.filter(false, "", false, "", false, "", false, null, false, null, false, null, "age", false);
         List<Dog> sortedDogs = result.collect(Collectors.toList());
 
         assertEquals(3, sortedDogs.size());

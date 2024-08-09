@@ -114,6 +114,7 @@ class ACController {
     +removeFromWishList(id: String): String
     +getDog(id: String): Dog
     +getAdoptableDogs(): List~Dog~
+    +setSortOn(sortOn: String, ascending: boolean): void
 }
 Breed --> ApiUtil
 Dog --> Breed
