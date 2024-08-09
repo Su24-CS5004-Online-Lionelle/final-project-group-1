@@ -101,9 +101,6 @@ class ACController {
     +setNameSearch(name: String): void
     +setSexSearch(sex: String): void
     +setBreedSearch(breed: String): void
-    +setAgeSearch(age: String): void
-    +setWeightSearch(weight: String): void
-    +setPriceSearch(price: String): void
     +clearSearchFilters(): void
     +setResultList(): void
     +getResultList(): List~Dog~
