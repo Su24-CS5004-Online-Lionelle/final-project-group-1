@@ -138,7 +138,7 @@ public class FilteredResultsPage extends JFrame {
     }
 
     private void addToWishlist(Dog dog) {
-        WishlistPage wishlistPage = new WishlistPage(dog);
+        String message = controller.addToWishList(dog);
         JOptionPane.showMessageDialog(this, message);
 
     }
