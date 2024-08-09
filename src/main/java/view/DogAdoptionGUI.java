@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This class represents the main GUI for the Dog Adoption Program.
+ * It handles the display of dogs, searching, and wishlist management.
+ */
 public class DogAdoptionGUI extends JFrame {
     private ACController controller;
     private JPanel mainPanel, searchPanel, resultsPanel, wishlistPanel;
@@ -23,9 +27,14 @@ public class DogAdoptionGUI extends JFrame {
     private JPanel dogGridPanel;
     private JScrollPane scrollPane;
 
+    /**
+     * Constructor for the DogAdoptionGUI.
+     * @param controller The ACController to manage dog data and operations.
+     */
     public DogAdoptionGUI(ACController controller) {
         this.controller = controller;
 
+        // Set up the main frame
         setTitle("Dog Adoption Program");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,18 +43,24 @@ public class DogAdoptionGUI extends JFrame {
         createResultsPanel();
         createWishlistPanel();
 
+
         mainPanel.add(searchPanel, BorderLayout.NORTH);
         mainPanel.add(resultsPanel, BorderLayout.CENTER);
         mainPanel.add(wishlistPanel, BorderLayout.SOUTH);
         add(mainPanel);
 
+        // Initialize the dog list display
         updateDogList(controller.getAdoptableDogs());
         setVisible(true);
     }
 
+    /**
+     * Creates the search panel with input fields and buttons.
+     */
     private void createSearchPanel() {
         searchPanel = new JPanel(new GridLayout(4, 2));
 
+        // Initialize input fields
         nameField = new JTextField(20);
         ageField = new JTextField(5);
         weightField = new JTextField(5);
@@ -55,6 +70,7 @@ public class DogAdoptionGUI extends JFrame {
         searchButton = new JButton("Search");
         clearButton = new JButton("Clear");
 
+        // Add components to the search panel
         searchPanel.add(new JLabel("Name:"));
         searchPanel.add(nameField);
         searchPanel.add(new JLabel("Sex:"));
@@ -64,10 +80,14 @@ public class DogAdoptionGUI extends JFrame {
         searchPanel.add(searchButton);
         searchPanel.add(clearButton);
 
+
         searchButton.addActionListener(e -> performSearch());
         clearButton.addActionListener(e -> clearSearch());
     }
 
+    /**
+     * Creates the results panel to display dogs.
+     */
     private void createResultsPanel() {
         resultsPanel = new JPanel(new BorderLayout());
         dogGridPanel = new JPanel(new GridLayout(0, 3, 10, 10));
@@ -75,6 +95,9 @@ public class DogAdoptionGUI extends JFrame {
         resultsPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Creates the wishlist panel with a button to show the wishlist.
+     */
     private void createWishlistPanel() {
         wishlistPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         showWishlistButton = new JButton("Show Wishlist");
@@ -82,6 +105,10 @@ public class DogAdoptionGUI extends JFrame {
         wishlistPanel.add(showWishlistButton);
     }
 
+    /**
+     * Gets the list of dog breeds for the breed dropdown.
+     * @return An array of breed names.
+     */
     private String[] getBreedList() {
         Set<String> breeds = new HashSet<>();
 
@@ -95,11 +122,15 @@ public class DogAdoptionGUI extends JFrame {
         return breedArray;
     }
 
+    /**
+     * Performs the search based on the user's input.
+     */
     private void performSearch() {
 
         List<Dog> allDogs = controller.getAdoptableDogs();
         ACFilterPlanner planner = new ACFilterPlanner(allDogs);
 
+        // Determine which filters are active
         boolean nameOn = !nameField.getText().isEmpty();
         boolean ageOn = !ageField.getText().isEmpty();
         boolean sexOn = sexComboBox.getSelectedIndex() > 0;
@@ -107,6 +138,7 @@ public class DogAdoptionGUI extends JFrame {
         boolean weightOn = !weightField.getText().isEmpty();
         boolean priceOn = !priceField.getText().isEmpty();
 
+        // Get filter values
         String nameFilter = nameField.getText();
         String ageFilter = ageField.getText();
         String sexFilter = sexOn ? sexComboBox.getSelectedItem().toString().substring(0, 1).toLowerCase() : null;
@@ -129,16 +161,24 @@ public class DogAdoptionGUI extends JFrame {
             updateDogList(resultList);
 
             if (resultList.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No dogs match the search criteria.", "Search Results", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        this, "No dogs match the search criteria.",
+                        "Search Results", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, resultList.size() + " dogs found matching the search criteria.", "Search Results", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        this, resultList.size() + " dogs found matching the search criteria.",
+                        "Search Results", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     * Clears all search fields and resets the dog list display.
+     */
     private void clearSearch() {
         nameField.setText("");
         ageField.setText("");
@@ -151,6 +191,10 @@ public class DogAdoptionGUI extends JFrame {
         updateDogList(controller.getAdoptableDogs());
     }
 
+    /**
+     * Updates the display of dogs in the results panel.
+     * @param dogs The list of dogs to display.
+     */
     private void updateDogList(List<Dog> dogs) {
         dogGridPanel.removeAll();
 
@@ -162,10 +206,17 @@ public class DogAdoptionGUI extends JFrame {
         dogGridPanel.revalidate();
         dogGridPanel.repaint();
     }
+
+    /**
+     * Creates a panel to display information for a single dog.
+     * @param dog The Dog object to display.
+     * @return A JPanel containing the dog's information and image.
+     */
     private JPanel createDogPanel(Dog dog) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
+        // Load and display the dog's image
         ImageIcon imageIcon = new ImageIcon(dog.getImage());
         Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(new ImageIcon(image));
@@ -177,12 +228,20 @@ public class DogAdoptionGUI extends JFrame {
                                     dog.getAge() + " years<br>$" + dog.getPrice() + "</html>");
         panel.add(infoLabel, BorderLayout.SOUTH);
 
-        JButton wishlistButton = new JButton(controller.getWishList().contains(dog) ? "Remove from Wishlist" : "Add to Wishlist");
+        // Add wishlist toggle button
+        JButton wishlistButton = new JButton(controller.getWishList().contains(dog) ?
+                "Remove from Wishlist" : "Add to Wishlist");
         wishlistButton.addActionListener(e -> toggleWishlist(dog, wishlistButton));
         panel.add(wishlistButton, BorderLayout.NORTH);
         return panel;
     }
 
+
+    /**
+     * Toggles a dog's wishlist status.
+     * @param dog The Dog to toggle in the wishlist.
+     * @param button The JButton to update based on the new wishlist status.
+     */
     private void toggleWishlist(Dog dog, JButton button) {
 
         if (controller.getWishList().contains(dog)) {
@@ -194,6 +253,9 @@ public class DogAdoptionGUI extends JFrame {
         }
     }
 
+    /**
+     * Displays the wishlist in a new dialog.
+     */
     private void showWishlist() {
         List<Dog> wishlist = controller.getWishList();
 
@@ -210,6 +272,7 @@ public class DogAdoptionGUI extends JFrame {
         JScrollPane scrollPane = new JScrollPane(dogsPanel);
         wishlistPanel.add(scrollPane, BorderLayout.CENTER);
 
+        // Add save button
         JButton saveButton = new JButton("Save Wishlist");
         saveButton.addActionListener(e -> saveWishlist());
         wishlistPanel.add(saveButton, BorderLayout.SOUTH);
@@ -217,6 +280,9 @@ public class DogAdoptionGUI extends JFrame {
         wishlistDialog.setVisible(true);
     }
 
+    /**
+     * Saves the wishlist to a JSON file.
+     */
     private void saveWishlist() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
@@ -232,10 +298,15 @@ public class DogAdoptionGUI extends JFrame {
             }
 
             controller.saveList(filePath);
-            JOptionPane.showMessageDialog(this, "Wishlist saved successfully to " + filePath);
+            JOptionPane.showMessageDialog(this,
+                    "Wishlist saved successfully to " + filePath);
         }
     }
 
+    /**
+     * Main method to launch the application.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         AdoptionCenterModel model = new AdoptionCenterModel();
         ACController controller = new ACController(model);
