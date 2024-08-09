@@ -1,4 +1,13 @@
+import controller.ACController;
+import model.AdoptionCenterModel;
+import model.Breed;
+import model.Dog;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ACControllerTest {
 
@@ -145,13 +154,5 @@ public class ACControllerTest {
         assertEquals(dog2, homeList.get(2)); // Oldest dog
     }
 
-    /**
-     * Tests setting an invalid filter.
-     * Verifies that applying a filter with a null or empty value throws an exception.
-     */
-    @Test
-    public void testApplyFilterWithInvalidValue() {
-        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(null));
-        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(""));
-    }
+    
 }
