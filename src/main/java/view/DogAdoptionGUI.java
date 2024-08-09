@@ -211,16 +211,6 @@ public class DogAdoptionGUI extends JFrame {
                 JOptionPane.showMessageDialog(this, resultList.size() + " dogs found matching the search criteria.", "Search Results", JOptionPane.INFORMATION_MESSAGE);
             }
 
-            // Debug output to console
-            System.out.println("Search performed with the following criteria:");
-            System.out.println("Name: " + (nameOn ? nameFilter : "Not specified"));
-            System.out.println("Age: " + (ageOn ? ageFilter : "Not specified"));
-            System.out.println("Sex: " + (sexOn ? sexFilter : "Not specified"));
-            System.out.println("Breed: " + (breedOn ? breedFilter : "Not specified"));
-            System.out.println("Weight: " + (weightOn ? weightFilter : "Not specified"));
-            System.out.println("Price: " + (priceOn ? priceFilter : "Not specified"));
-            System.out.println("Sort By: " + sortOn + " (Ascending)");
-            System.out.println("Number of dogs found: " + resultList.size());
 
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
