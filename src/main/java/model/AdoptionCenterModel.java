@@ -2,7 +2,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdoptionCenterModel {
+public class AdoptionCenterModel implements IACModel {
     /** List to store Dog objects. */
     private List<Dog> dogs;
 
@@ -19,6 +19,7 @@ public class AdoptionCenterModel {
      * @param dog the Dog object to add
      * @throws IllegalArgumentException if the Dog object is null
      */
+    @Override
     public void addDog(Dog dog) {
         if (dog != null) {
             dogs.add(dog);
@@ -32,6 +33,7 @@ public class AdoptionCenterModel {
      *
      * @param dogId id of the Dog to remove
      */
+    @Override
     public void removeDog(String dogId) {
         dogs.removeIf(dog -> dog.getID().equals(dogId));
     }
@@ -41,6 +43,7 @@ public class AdoptionCenterModel {
      *
      * @return a list of all Dog objects
      */
+    @Override
     public List<Dog> getAllDogs() {
         return new ArrayList<>(dogs);
     }
@@ -51,6 +54,7 @@ public class AdoptionCenterModel {
      * @param dogId id of the Dog
      * @return the Dog object with a given id, or null if not found
      */
+    @Override
     public Dog getDogById(String dogId) {
         return dogs.stream()
                    .filter(dog -> dog.getID().equals(dogId))
@@ -65,6 +69,7 @@ public class AdoptionCenterModel {
      * @param newAge the new age to set
      * @throws IllegalArgumentException if the Dog with the given id is not found
      */
+    @Override
     public void changeDogAge(String dogId, int newAge) {
         Dog dog = getDogById(dogId);
         if (dog != null) {
@@ -81,6 +86,7 @@ public class AdoptionCenterModel {
      * @param newPrice the new price to set
      * @throws IllegalArgumentException if the Dog with the given id is not found
      */
+    @Override
     public void changeDogPrice(String dogId, double newPrice) {
         Dog dog = getDogById(dogId);
         if (dog != null) {
@@ -97,6 +103,7 @@ public class AdoptionCenterModel {
      * @param isReady true if the Dog is ready for adoption, false otherwise
      * @throws IllegalArgumentException if the Dog does not have a price or if the Dog with the given ID is not found
      */
+    @Override
     public void markDogReadyForAdoption(String dogId, boolean isReady) {
         Dog dog = getDogById(dogId);
         if (dog != null) {
@@ -114,6 +121,7 @@ public class AdoptionCenterModel {
      * Returns a list of all the dogs that are adoptable.
      * @return List of dogs that are adoptable.
      */
+    @Override
     public List<Dog> getAdoptableDogs() {
         return this.dogs.stream().filter(dog -> dog.getIsReady() == true).toList();
     }
