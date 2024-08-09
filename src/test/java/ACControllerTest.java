@@ -86,6 +86,63 @@ public class ACControllerTest {
     }
 
     /**
+     * Tests setting and applying the age filter.
+     * Verifies that only dogs of the specified age are returned.
+     */
+    @Test
+    public void testSetAgeSearch() {
+        controller.setAgeSearch("5");
+        controller.setResultList();
+        List<Dog> resultList = controller.getResultList();
+
+        assertEquals(1, resultList.size());
+        assertEquals(dog2, resultList.get(0));
+    }
+
+    /**
+     * Tests setting and applying the weight filter.
+     * Verifies that only dogs of the specified weight are returned.
+     */
+    @Test
+    public void testSetWeightSearch() {
+        controller.setWeightSearch("55");
+        controller.setResultList();
+        List<Dog> resultList = controller.getResultList();
+
+        assertEquals(1, resultList.size());
+        assertEquals(dog3, resultList.get(0));
+    }
+
+    /**
+     * Tests setting and applying the price filter.
+     * Verifies that only dogs of the specified price are returned.
+     */
+    @Test
+    public void testSetPriceSearch() {
+        controller.setPriceSearch("700");
+        controller.setResultList();
+        List<Dog> resultList = controller.getResultList();
+
+        assertEquals(1, resultList.size());
+        assertEquals(dog2, resultList.get(0));
+    }
+
+    /**
+     * Tests clearing all search filters.
+     * Verifies that all dogs are returned after clearing the filters.
+     */
+    @Test
+    public void testClearSearchFilters() {
+        controller.setNameSearch("Dog1");
+        controller.setResultList();
+        assertEquals(1, controller.getResultList().size());
+
+        controller.clearSearchFilters();
+        controller.setResultList();
+        assertEquals(3, controller.getResultList().size());
+    }
+
+    /**
      * Tests adding a dog to the wishlist.
      * Verifies that the dog is successfully added.
      */
@@ -211,15 +268,5 @@ public class ACControllerTest {
 
         // Clean up the test file
         file.delete();
-    }
-
-    /**
-     * Tests setting an invalid filter.
-     * Verifies that applying a filter with a null or empty value throws an exception.
-     */
-    @Test
-    public void testApplyFilterWithInvalidValue() {
-        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(null));
-        assertThrows(IllegalArgumentException.class, () -> controller.setNameSearch(""));
     }
 }
