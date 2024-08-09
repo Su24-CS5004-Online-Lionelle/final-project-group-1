@@ -1,5 +1,6 @@
 package view;
-
+import controller.ACController;
+import model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -14,7 +15,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,12 +31,47 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DogAdoptionGUI extends JFrame {
+    /**
+     * Controller for managing the adoption center model and operations.
+     */
     private ACController controller;
+    /**
+     * Main panels of the GUI.
+     * mainPanel: Contains all other panels of the GUI.
+     * searchPanel: Contains search input fields and buttons.
+     * resultsPanel: Displays search results.
+     * wishlistPanel: Contains the wishlist button.
+     */
     private JPanel mainPanel, searchPanel, resultsPanel, wishlistPanel;
+    /**
+     * Text fields for entering search criteria.
+     * nameField: For dog name.
+     * ageField: For dog age.
+     * weightField: For dog weight.
+     * priceField: For dog price.
+     */
     private JTextField nameField, ageField, weightField, priceField;
+    /**
+     * Combo boxes for selecting search and sort criteria.
+     * sexComboBox: For selecting dog sex.
+     * breedComboBox: For selecting dog breed.
+     * sortComboBox: For selecting the sorting criteria for search results.
+     */
     private JComboBox<String> sexComboBox, breedComboBox, sortComboBox;
+    /**
+     * Buttons for user interactions.
+     * searchButton: To initiate the search based on entered criteria.
+     * clearButton: To clear all search fields.
+     * showWishlistButton: To display the wishlist.
+     */
     private JButton searchButton, clearButton, showWishlistButton;
+    /**
+     * Panel for displaying individual dog information in a grid layout.
+     */
     private JPanel dogGridPanel;
+    /**
+     * Scroll pane to allow scrolling through search results.
+     */
     private JScrollPane scrollPane;
 
     /**
