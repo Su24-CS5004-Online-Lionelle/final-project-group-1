@@ -34,15 +34,15 @@ public class ACController {
     /** Flag indicating if age filter is active. */
     private boolean ageOn = false;
     /** The search string for filtering by age. */
-    private String ageSearch;
+    private int ageSearch;
     /** Flag indicating if weight filter is active. */
     private boolean weightOn = false;
     /** The search string for filtering by weight. */
-    private String weightSearch;
+    private double weightSearch;
     /** Flag indicating if price filter is active. */
     private boolean priceOn = false;
     /** The search string for filtering by price. */
-    private String priceSearch;
+    private double priceSearch;
     /** The attribute to sort results by. */
     private String sortOn = "price";
     /** Flag indicating if sorting should be in ascending order. */
@@ -68,7 +68,7 @@ public class ACController {
     public void setHomeList() {
         this.homeList = planner.filter(false, null,
         false, null, false, null, false,
-        null, false, null, false, null, "age", true).toList();
+        0, false, 0, false, 0, "age", true).toList();
     }
 
     /**
@@ -116,8 +116,12 @@ public class ACController {
      * @param age The age to search for.
      */
     public void setAgeSearch(String age) {
-        this.ageOn = true;
-        this.ageSearch = age;
+        try {
+            this.ageSearch = Integer.parseInt(age);
+            this.ageOn = true;
+        } catch (NumberFormatException e) {
+            this.ageOn = false;
+        }
     }
 
     /**
@@ -126,8 +130,12 @@ public class ACController {
      * @param weight The weight to search for.
      */
     public void setWeightSearch(String weight) {
-        this.weightOn = true;
-        this.weightSearch = weight;
+        try {
+            this.weightSearch = Double.parseDouble(weight);
+            this.weightOn = true;
+        } catch (NumberFormatException e) {
+            this.weightOn = false;
+        }
     }
 
     /**
@@ -136,8 +144,12 @@ public class ACController {
      * @param price The price to search for.
      */
     public void setPriceSearch(String price) {
-        this.priceOn = true;
-        this.priceSearch = price;
+        try {
+            this.priceSearch = Double.parseDouble(price);
+            this.priceOn = true;
+        } catch (NumberFormatException e) {
+            this.priceOn = false;
+        }
     }
 
     /**

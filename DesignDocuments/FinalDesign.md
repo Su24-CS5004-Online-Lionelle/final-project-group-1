@@ -72,7 +72,7 @@ class ACFilterPlanner {
 	-filtered: Stream~Dog~
     -dogs: List~Dog~
 	+ACFilterPlanner(dogs: List~Dog~)
-	+filter(nameOn: boolean, nameFilter: String, sexOn: boolean, sexFilter: String, breedOn: boolean, breedFilter: String, ageOn: boolean, ageFilter: String, weightOn: boolean, weightFilter: String, priceOn: boolean, priceFilter: String, sortOn: String, ascending: boolean): Stream~Dog~
+	+filter(nameOn: boolean, nameFilter: String, sexOn: boolean, sexFilter: String, breedOn: boolean, breedFilter: String, ageOn: boolean, ageFilter: int, weightOn: boolean, weightFilter: double, priceOn: boolean, priceFilter: double, sortOn: String, ascending: boolean): Stream~Dog~
 	+applyFilter(filterOn: boolean, field: String, value: Object): void
 }
 class ACController {
@@ -86,11 +86,11 @@ class ACController {
     -breedOn: boolean
     -breedFilter: String
     -ageOn: boolean
-    -ageFilter: String
+    -ageFilter: int
     -weightOn: boolean
-    -weightFilter: String
+    -weightFilter: double
     -priceOn: boolean
-    -priceFilter: String
+    -priceFilter: double
     -sortOn: String
     -ascending: boolean
     -wishList: List~Dog~
