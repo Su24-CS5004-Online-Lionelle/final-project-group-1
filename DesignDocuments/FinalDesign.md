@@ -2,6 +2,24 @@ MERMAID DIAGRAM
 
 ```mermaid
 classDiagram
+class IDog {
+    <<Interface>>
+    getID(): String
+    getName(): String
+    getSex(): String
+    getBreed(): Breed
+    getAge(): int
+    getWeight(): double
+    getImage(): String
+    getPrice(): int
+    getIsReady(): boolean
+    changeName(name: String): void
+    changeAge(age: int): void
+    changeWeight(weight: double): void
+    changeImage(image: String): void
+    changePrice(price: double): void
+    changeIsReady(isReady: boolean): void
+}
 class Dog {
     -id: String
     -name: String
@@ -51,6 +69,17 @@ class ApiUtil {
     +apiUtil()
     +getBreeds(): String
     +parseBreeds(jsonResponse: String): Map~String, Breed~
+}
+class IACModel{
+    <<Interface>>
+    addDog(dog: Dog): void 
+    removeDog(dogID: String): void
+    getAllDogs(): List~Dog~
+    getDogById(dogId: String): Dog
+    changeDogAge(dogId: String, newAge: int): void
+    changeDogPrice(dogId: String, newPrice: double): void
+    markDogReadyForAdoption(dogId: String, isReady: boolean): void
+    getAdoptableDogs(): List~Dog~
 }
 class AdoptionCenterModel {
     -dogs: List~Dog~
@@ -113,11 +142,47 @@ class ACController {
     +getAdoptableDogs(): List~Dog~
     +setSortOn(sortOn: String, ascending: boolean): void
 }
+class DogAdoptionGUI {
+    - controller: ACController
+    - mainPanel: JPanel
+    - searchPanel: JPanel
+    - resultsPanel: JPanel
+    - wishlistPanel: JPanel
+    - nameField: JTextField
+    - ageField: JTextField
+    - weightField: JTextField
+    - priceField: JTextField
+    - sexComboBox: JComboBox~String~
+    - breedComboBox: JComboBox~String~
+    - sortComboBox: JComboBox~String~
+    - searchButton: JButton
+    - clearButton: JButton
+    - showWishlistButton: JButton
+    - dogGridPanel: JPanel
+    - scrollPane: JScrollPane
+    + DogAdoptionGUI(controller: ACController)
+    - createSearchPanel(): void
+    - createResultsPanel(): void
+    - createWishlistPanel(): void
+    - getBreedList(): String[]
+    - performSearch(): void
+    - clearSearch(): void
+    - updateDogList(dogs: List~Dog~): void
+    - createDogPanel(dog: Dog): JPanel
+    - toggleWishlist(dog: Dog, button: JButton): void
+    - showWishlist(): void
+    - saveWishlist(): void
+    + main(args: String[]): void
+}
 Breed --> ApiUtil
-Dog --> Breed
-AdoptionCenterModel --> Dog
+IDog --> Breed
+Dog --|> IDog
+IACModel --> Dog 
+AdoptionCenterModel --|> IACModel
 ACFilterPlanner --> ComparatorSet
 ACController --> AdoptionCenterModel
 ACController --> ACFilterPlanner
 ACController --> Dog
+DogAdoptionGUI --> ACController
+DogAdoptionGUI --> Dog
 ```
