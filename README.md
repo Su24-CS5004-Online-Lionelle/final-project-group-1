@@ -2,7 +2,7 @@
 
 * The group 1 names and Github URLs
   * Dina Barua - 
-  * Emily Liu -
+  * Zheqi(Emily) Liu - https://github.com/emiiiliu
   * Philip Fochios - 
   * Joel Xu - https://github.com/jowxu
   
