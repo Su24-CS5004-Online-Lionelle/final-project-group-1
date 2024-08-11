@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-public class ACFilterPlanner {
+public class ACFilterPlanner implements IACFilterPlanner{
     /** The stream of filtered Dog objects. */
     private Stream<Dog> filtered;
     /** The list of Dog objects to be filtered/sorted. */
@@ -38,6 +38,7 @@ public class ACFilterPlanner {
      * @param ascending if true, sort in ascending order; otherwise, sort in descending order
      * @return the stream of filtered/sorted dogs
      */
+    @Override
     public Stream<Dog> filter(boolean nameOn, String nameFilter,
                               boolean sexOn, String sexFilter,
                               boolean breedOn, String breedFilter,
@@ -72,6 +73,7 @@ public class ACFilterPlanner {
      * @param field the field to filter by
      * @param value the value to filter by
      */
+    @Override
     public void applyFilter(boolean filterOn, String field, Object value) {
         if (filterOn) {
             if (value == null || (value instanceof String && ((String) value).isEmpty())) {
