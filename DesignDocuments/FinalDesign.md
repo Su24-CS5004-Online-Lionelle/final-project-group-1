@@ -143,36 +143,36 @@ class ACController {
     +setSortOn(sortOn: String, ascending: boolean): void
 }
 class DogAdoptionGUI {
-    - controller: ACController
-    - mainPanel: JPanel
-    - searchPanel: JPanel
-    - resultsPanel: JPanel
-    - wishlistPanel: JPanel
-    - nameField: JTextField
-    - ageField: JTextField
-    - weightField: JTextField
-    - priceField: JTextField
-    - sexComboBox: JComboBox~String~
-    - breedComboBox: JComboBox~String~
-    - sortComboBox: JComboBox~String~
-    - searchButton: JButton
-    - clearButton: JButton
-    - showWishlistButton: JButton
-    - dogGridPanel: JPanel
-    - scrollPane: JScrollPane
-    + DogAdoptionGUI(controller: ACController)
-    - createSearchPanel(): void
-    - createResultsPanel(): void
-    - createWishlistPanel(): void
-    - getBreedList(): String[]
-    - performSearch(): void
-    - clearSearch(): void
-    - updateDogList(dogs: List~Dog~): void
-    - createDogPanel(dog: Dog): JPanel
-    - toggleWishlist(dog: Dog, button: JButton): void
-    - showWishlist(): void
-    - saveWishlist(): void
-    + main(args: String[]): void
+    -controller: ACController
+    -mainPanel: JPanel
+    -searchPanel: JPanel
+    -resultsPanel: JPanel
+    -wishlistPanel: JPanel
+    -nameField: JTextField
+    -ageField: JTextField
+    -weightField: JTextField
+    -priceField: JTextField
+    -sexComboBox: JComboBox~String~
+    -breedComboBox: JComboBox~String~
+    -sortComboBox: JComboBox~String~
+    -searchButton: JButton
+    -clearButton: JButton
+    -showWishlistButton: JButton
+    -dogGridPanel: JPanel
+    -scrollPane: JScrollPane
+    +DogAdoptionGUI(controller: ACController)
+    -createSearchPanel(): void
+    -createResultsPanel(): void
+    -createWishlistPanel(): void
+    -getBreedList(): String[]
+    -performSearch(): void
+    -clearSearch(): void
+    -updateDogList(dogs: List~Dog~): void
+    -createDogPanel(dog: Dog): JPanel
+    -toggleWishlist(dog: Dog, button: JButton): void
+    -showWishlist(): void
+    -saveWishlist(): void
+    +main(args: String[]): void
 }
 Breed --> ApiUtil
 IDog --> Breed
