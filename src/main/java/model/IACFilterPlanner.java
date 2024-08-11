@@ -31,4 +31,12 @@ public interface IACFilterPlanner {
                        boolean priceOn, String priceFilter,
                        String sortOn, boolean ascending);
 
+    /**
+     * Applies a filter to the stream based on the specified field and value.
+     *
+     * @param filterOn indicates whether to apply the filter
+     * @param field    the field to filter by
+     * @param value    the value to filter by
+     */
+    void applyFilter(boolean filterOn, String field, Object value);
 }
