@@ -1,7 +1,7 @@
 package model;
 import java.io.File;
 
-public class Dog {
+public class Dog implements IDog{
 
     /** the unique identifier of the dog */
     private String id;
@@ -99,6 +99,7 @@ public class Dog {
      *
      * @return the ID of the dog
      */
+    @Override
     public String getID() {
         return this.id;
     }
@@ -108,6 +109,7 @@ public class Dog {
      *
      * @return the name of the dog
      */
+     @Override
     public String getName() {
         return this.name;
     }
@@ -117,6 +119,7 @@ public class Dog {
      *
      * @return the sex of the dog
      */
+    @Override
     public String getSex() {
         return this.sex;
     }
@@ -126,6 +129,7 @@ public class Dog {
      *
      * @return the breed of the dog
      */
+    @Override
     public Breed getBreed() {
         return this.breed;
     }
@@ -135,6 +139,7 @@ public class Dog {
      *
      * @return the age of the dog
      */
+    @Override
     public int getAge() {
         return this.age;
     }
@@ -144,6 +149,7 @@ public class Dog {
      *
      * @return the weight of the dog
      */
+    @Override
     public double getWeight() {
         return this.weight;
     }
@@ -153,6 +159,7 @@ public class Dog {
      * 
      * @return the image path of the dog
      */
+    @Override
     public String getImage() {
         return this.image;
     }
@@ -162,6 +169,7 @@ public class Dog {
      *
      * @return the price of the dog
      */
+    @Override
     public double getPrice() {
         return this.price;
     }
@@ -171,6 +179,7 @@ public class Dog {
      *
      * @return the readiness for adoption status of the dog
      */
+    @Override
     public boolean getIsReady() {
         return this.isReady;
     }
@@ -180,6 +189,7 @@ public class Dog {
      *
      * @param name the new name of the dog
      */
+    @Override
     public void changeName(String name) {
         this.name = name;
     }
@@ -190,6 +200,7 @@ public class Dog {
      * @param age the new age of the dog
      * @throws IllegalArgumentException if the new age is not greater than the current age
      */
+    @Override
     public void changeAge(int age) throws IllegalArgumentException {
         if (age <= this.age) {
             throw new IllegalArgumentException("The new dog age must be older than the currently assigned one.");
@@ -203,6 +214,7 @@ public class Dog {
      * @param weight the new weight of the dog
      * @throws IllegalArgumentException if the weight is not greater than zero
      */
+    @Override
     public void changeWeight(double weight) throws IllegalArgumentException {
         if (weight <= 0) {
             throw new IllegalArgumentException("Dog weight must be greater than zero.");
@@ -210,6 +222,13 @@ public class Dog {
         this.weight = weight;
     }
 
+    /**
+     * Changes the image of the dog.
+     *
+     * @param image the new image of the dog
+     * @throws IllegalArgumentException if the image path is invalid
+     */
+    @Override
     public void changeImage(String image) throws IllegalArgumentException {
         File file = new File(IMAGE_DIRECTORY + image);
         if (!file.exists() || file.isDirectory()) {
@@ -224,6 +243,7 @@ public class Dog {
      * @param price the new price of the dog
      * @throws IllegalArgumentException if the price is negative
      */
+    @Override
     public void changePrice(double price) throws IllegalArgumentException {
         if (price < 0) {
             throw new IllegalArgumentException("Price of dog cannot be negative.");
@@ -236,6 +256,7 @@ public class Dog {
      *
      * @param isReady the new readiness for adoption status of the dog
      */
+    @Override
     public void changeIsReady(boolean isReady) {
         this.isReady = isReady;
     }
