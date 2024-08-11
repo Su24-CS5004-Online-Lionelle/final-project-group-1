@@ -97,6 +97,11 @@ class ComparatorSet {
     +getComparator(sortOn: String): Comparator~Dog~
     +getPredicate(filter: String, value: Object): Predicate~Dog~
 }
+class IACFilterPlanner {
+    <<interface>>
+    +filter(nameOn: boolean, nameFilter: String, sexOn: boolean, sexFilter: String, breedOn: boolean, breedFilter: String, ageOn: boolean, ageFilter: String, weightOn: boolean, weightFilter: String, priceOn: boolean, priceFilter: String, sortOn: String, ascending: boolean): Stream~Dog~
+	+applyFilter(filterOn: boolean, field: String, value: Object): void
+}
 class ACFilterPlanner {
 	-filtered: Stream~Dog~
     -dogs: List~Dog~
@@ -179,6 +184,7 @@ IDog --> Breed
 Dog --|> IDog
 IACModel --> Dog 
 AdoptionCenterModel --|> IACModel
+ACFilterPlanner --|> IACFilterPlanner
 ACFilterPlanner --> ComparatorSet
 ACController --> AdoptionCenterModel
 ACController --> ACFilterPlanner
