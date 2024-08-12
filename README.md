@@ -11,4 +11,4 @@
 * [Design Documents](DesignDocuments)
 * [Program Manual](Manual/README.md)
 
-* To run the program, use the driver method `main` in: [src\main\java\view\DogAdoptionGUI.java]https://github.com/Su24-CS5004-Online-Lionelle/final-project-group-1/blob/main/src/main/java/view/DogAdoptionGUI.java
+* To run the program, use the driver method `main` in: [DogAdoptionGUI.java](src\main\java\view\DogAdoptionGUI.java)
