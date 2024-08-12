@@ -1,7 +1,7 @@
 # Final Project for CS 5004 - D.E.J.P's Adoption Center Program
 
 * The group 1 names and Github URLs
-  * Dina Barua - 
+  * Dina Barua - https://github.com/Dbarua21
   * Zheqi(Emily) Liu - https://github.com/emiiiliu
   * Philip Fochios - https://github.com/pfochios
   * Joel Xu - https://github.com/jowxu
